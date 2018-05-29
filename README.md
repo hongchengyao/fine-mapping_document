@@ -187,7 +187,7 @@ As abovementioned, after preprocessing, running fine-mapping software is usually
 	-enumerate 1
 	-annotations annotation1,annotation2,annotation3
 
-###[fgwas](https://github.com/joepickrell/fgwas/blob/master/man/fgwas_manual.pdf)  
+### [fgwas](https://github.com/joepickrell/fgwas/blob/master/man/fgwas_manual.pdf)  
 #### Example code
 
 	fgwas -i input_file
