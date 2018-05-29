@@ -40,7 +40,7 @@ to be added
 ### CAVIARBF
 to be added
 ## 2. File splitting
-The idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the [approximately independent LD block](https://bitbucket.org/nygcresearch/ldetect-data)[^1].  
+The idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the [approximately independent LD block](https://bitbucket.org/nygcresearch/ldetect-data).  
 ### Approximately independent LD block
 1) Read the range of each LD block from the approximately independent LD block file  
 2) Use tabix to extract the SNPs from the GWAS file according to the LD block range  
@@ -111,4 +111,5 @@ Note: This should not be used directly since it applies to specific files
 
 
 
-[^1]: Reference paper: [Approximately independent linkage disequilibrium blocks in human populations](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/)
+## Reference paper
+[Approximately independent linkage disequilibrium blocks in human populations](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4731402/)
