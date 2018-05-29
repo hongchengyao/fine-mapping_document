@@ -95,7 +95,7 @@ to be added
 
 
 ## 4. Functional annotation generation
-### For functional annotation matrix generation using PAINTOR script
+### If using PAINTOR script to generate functional annotation matrix
 chr [**required**]  
 pos [**required**]  
 #### Example code
@@ -108,7 +108,8 @@ Note: This should not be used directly since it applies to specific files
 	--chr chr
 	--pos pos
 
-
+### If using bedtools to generate functional annotation matrix
+to be added
 
 
 ## Reference
