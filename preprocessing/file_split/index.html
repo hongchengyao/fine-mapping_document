@@ -157,8 +157,11 @@ chr1 4380811 5913893
 <p class="admonition-title">Note</p>
 <p>This should not be used directly since it applies to specific files</p>
 </div>
-<pre><code>bgzip gwas_summary_temp_sorted
+<pre><code># comrepss the file using bgzip
+bgzip gwas_summary_temp_sorted
+# make index file using tabix
 tabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz
+# extract range of LD block
 cat fourier_ls-all.bed | while read line
 do
     array=(${line})
@@ -167,6 +170,7 @@ do
     start=${array[1]// /}
     end=${array[2]// /}
     if [ &quot;${start}&quot; != &quot;start&quot; ]; then
+    # use tabix to extract the LD block from the GWAS file
     tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} &gt; output.${chrnum}_${start}_${end}
 done
 </code></pre>

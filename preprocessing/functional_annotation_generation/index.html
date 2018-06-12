@@ -143,8 +143,34 @@
 <li>The chromosome and position information of each SNP from GWAS summary data file</li>
 </ol>
 <h2 id="if-using-paintor-script-to-generate-functional-annotation-matrix">If using PAINTOR script to generate functional annotation matrix</h2>
-<p>chr [<strong>required</strong>]<br />
-pos [<strong>required</strong>]  </p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>pos</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol>
+<li>Make sure that the functional annotation bed file are sorted, because the AnnotateLocus.py script used a specific algorithm and unsorted functional annotation bed file will lead to wrong function annotation matrix.</li>
+<li>Make sure that the chromosome nomenclature is the same in the GWAS file and the functional annotation bed file. e.g. both should be chr1 or both should be 1</li>
+</ol>
+</div>
 <h3 id="example-code">Example code</h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

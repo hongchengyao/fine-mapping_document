@@ -107,7 +107,7 @@
         }, 
         {
             "location": "/preprocessing/file_split/", 
-            "text": "File splitting\n\n\n\n\nThe idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the \napproximately independent LD block\n.  \n\n\nApproximately independent LD block\n\n\n\n\nRead the range of each LD block from the approximately independent LD block file\n\n\nUse tabix to extract the SNPs from the GWAS file according to the LD block range\n\n\nFilter loci by Pvalue/Zscore since there are \nthousands\n of LD blocks  \n\n\n\n\nExample LD block file\n\n\nchr start stop\nchr1 10583 1892607\nchr1 1892607 3582736\nchr1 3582736 4380811\nchr1 4380811 5913893\n...\n\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\nbgzip gwas_summary_temp_sorted\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [ \n${start}\n != \nstart\n ]; then\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} \n output.${chrnum}_${start}_${end}\ndone\n\n\n\n\nOther methods\n\n\nIt is not necessary to split the genome into loci by approximately independent LD block. Sometimes people may just select the lead SNP and include SNPs within 500K bp of the lead SNP on both sides. If you have already define the loci somehow, it's OK to just skip this step.", 
+            "text": "File splitting\n\n\n\n\nThe idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the \napproximately independent LD block\n.  \n\n\nApproximately independent LD block\n\n\n\n\nRead the range of each LD block from the approximately independent LD block file\n\n\nUse tabix to extract the SNPs from the GWAS file according to the LD block range\n\n\nFilter loci by Pvalue/Zscore since there are \nthousands\n of LD blocks  \n\n\n\n\nExample LD block file\n\n\nchr start stop\nchr1 10583 1892607\nchr1 1892607 3582736\nchr1 3582736 4380811\nchr1 4380811 5913893\n...\n\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n# comrepss the file using bgzip\nbgzip gwas_summary_temp_sorted\n# make index file using tabix\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\n# extract range of LD block\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [ \n${start}\n != \nstart\n ]; then\n    # use tabix to extract the LD block from the GWAS file\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} \n output.${chrnum}_${start}_${end}\ndone\n\n\n\n\nOther methods\n\n\nIt is not necessary to split the genome into loci by approximately independent LD block. Sometimes people may just select the lead SNP and include SNPs within 500K bp of the lead SNP on both sides. If you have already define the loci somehow, it's OK to just skip this step.", 
             "title": "2. File splitting"
         }, 
         {
@@ -127,7 +127,7 @@
         }, 
         {
             "location": "/preprocessing/file_split/#example-code", 
-            "text": "Note  This should not be used directly since it applies to specific files   bgzip gwas_summary_temp_sorted\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [  ${start}  !=  start  ]; then\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end}   output.${chrnum}_${start}_${end}\ndone", 
+            "text": "Note  This should not be used directly since it applies to specific files   # comrepss the file using bgzip\nbgzip gwas_summary_temp_sorted\n# make index file using tabix\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\n# extract range of LD block\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [  ${start}  !=  start  ]; then\n    # use tabix to extract the LD block from the GWAS file\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end}   output.${chrnum}_${start}_${end}\ndone", 
             "title": "Example code"
         }, 
         {
@@ -137,7 +137,7 @@
         }, 
         {
             "location": "/preprocessing/ld_matrix_generation/", 
-            "text": "LD matrix generation\n\n\n\n\n\n\nNote\n\n\nSnps in the fine-mapping file should be in the same order as in the LD matrix file\n\n\n\n\nLD matrix generation using PAINTOR script\n\n\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nchr\n\n\nrequired\n\n\nUsed to choose the reference file\n\n\n\n\n\n\npos\n\n\nrequired\n\n\n\n\n\n\n\n\neffective allele\n\n\nrequired\n\n\n\n\n\n\n\n\nbaseline allele\n\n\nrequired\n\n\n\n\n\n\n\n\nZscore\n\n\nrequired\n\n\n\n\n\n\n\n\n1000g reference\n\n\nrequired\n\n\n\n\n\n\n\n\n1000g panel file\n\n\nrequired\n\n\n\n\n\n\n\n\npopulation ethnicity\n\n\nrequired\n\n\n\n\n\n\n\n\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n    python CalcLD_1KG_VCF.py\n    --locus gwas_summary_3_4750808.processed\n    --reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz\n    --map integrated_call_samples_v3.20130502.ALL.panel\n    --effect_allele effect_allele\n    --alt_allele baseline_allele\n    --population EAS\n    --Zhead Zscore\n    --out_name gwas_summary_3_4750808.processed\n    --position pos\n\n\n\n\nLD matrix generation using raw genotype data and Plink\n\n\nto be added", 
+            "text": "LD matrix generation\n\n\n\n\n\n\nNote\n\n\nSnps in the fine-mapping file should be in the same order as in the LD matrix file\n\n\n\n\nLD matrix generation using PAINTOR script\n\n\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nchr\n\n\nrequired\n\n\nUsed to choose the reference file\n\n\n\n\n\n\npos\n\n\nrequired\n\n\n\n\n\n\n\n\neffective allele\n\n\nrequired\n\n\n\n\n\n\n\n\nbaseline allele\n\n\nrequired\n\n\n\n\n\n\n\n\nZscore\n\n\nrequired\n\n\n\n\n\n\n\n\n1000g reference\n\n\nrequired\n\n\n\n\n\n\n\n\n1000g panel file\n\n\nrequired\n\n\n\n\n\n\n\n\npopulation ethnicity\n\n\nrequired\n\n\n\n\n\n\n\n\n\n\nUsually 1000 genome reference file are splitted into chromosomes, and CalcLD_1KG_VCF.py need to specify reference with matched chromosome\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n    python CalcLD_1KG_VCF.py\n    --locus gwas_summary_3_4750808.processed\n    --reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz\n    --map integrated_call_samples_v3.20130502.ALL.panel\n    --effect_allele effect_allele\n    --alt_allele baseline_allele\n    --population EAS\n    --Zhead Zscore\n    --out_name gwas_summary_3_4750808.processed\n    --position pos\n\n\n\n\nLD matrix generation using raw genotype data and Plink\n\n\nto be added", 
             "title": "3. LD matrix generation"
         }, 
         {
@@ -147,7 +147,7 @@
         }, 
         {
             "location": "/preprocessing/ld_matrix_generation/#ld-matrix-generation-using-paintor-script", 
-            "text": "Header  Option  Note      chr  required  Used to choose the reference file    pos  required     effective allele  required     baseline allele  required     Zscore  required     1000g reference  required     1000g panel file  required     population ethnicity  required", 
+            "text": "Header  Option  Note      chr  required  Used to choose the reference file    pos  required     effective allele  required     baseline allele  required     Zscore  required     1000g reference  required     1000g panel file  required     population ethnicity  required      Usually 1000 genome reference file are splitted into chromosomes, and CalcLD_1KG_VCF.py need to specify reference with matched chromosome", 
             "title": "LD matrix generation using PAINTOR script"
         }, 
         {
@@ -162,7 +162,7 @@
         }, 
         {
             "location": "/preprocessing/functional_annotation_generation/", 
-            "text": "Functional annotation generation\n\n\n\n\nThe generation of functional annotation matrix relies on two types of information (files)\n\n\n\n\nThe functional annotation bed files\n\n\nThe chromosome and position information of each SNP from GWAS summary data file\n\n\n\n\nIf using PAINTOR script to generate functional annotation matrix\n\n\nchr [\nrequired\n]\n\npos [\nrequired\n]  \n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n    python AnnotateLocus.py\n    --input annotation_paths_list\n    --locus gwas_summary_3_4750808.processed\n    --out gwas_summary_3_4750808.processed.annotations\n    --chr chr\n    --pos pos\n\n\n\n\nIf using bedtools to generate functional annotation matrix\n\n\nto be added", 
+            "text": "Functional annotation generation\n\n\n\n\nThe generation of functional annotation matrix relies on two types of information (files)\n\n\n\n\nThe functional annotation bed files\n\n\nThe chromosome and position information of each SNP from GWAS summary data file\n\n\n\n\nIf using PAINTOR script to generate functional annotation matrix\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nchr\n\n\nrequired\n\n\n\n\n\n\n\n\npos\n\n\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nMake sure that the functional annotation bed file are sorted, because the AnnotateLocus.py script used a specific algorithm and unsorted functional annotation bed file will lead to wrong function annotation matrix.\n\n\nMake sure that the chromosome nomenclature is the same in the GWAS file and the functional annotation bed file. e.g. both should be chr1 or both should be 1\n\n\n\n\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n    python AnnotateLocus.py\n    --input annotation_paths_list\n    --locus gwas_summary_3_4750808.processed\n    --out gwas_summary_3_4750808.processed.annotations\n    --chr chr\n    --pos pos\n\n\n\n\nIf using bedtools to generate functional annotation matrix\n\n\nto be added", 
             "title": "4. Functional annotation generation"
         }, 
         {
@@ -172,7 +172,7 @@
         }, 
         {
             "location": "/preprocessing/functional_annotation_generation/#if-using-paintor-script-to-generate-functional-annotation-matrix", 
-            "text": "chr [ required ] \npos [ required ]", 
+            "text": "Header  Option  Note      chr  required     pos  required       Note   Make sure that the functional annotation bed file are sorted, because the AnnotateLocus.py script used a specific algorithm and unsorted functional annotation bed file will lead to wrong function annotation matrix.  Make sure that the chromosome nomenclature is the same in the GWAS file and the functional annotation bed file. e.g. both should be chr1 or both should be 1", 
             "title": "If using PAINTOR script to generate functional annotation matrix"
         }, 
         {
@@ -187,7 +187,7 @@
         }, 
         {
             "location": "/software_running/", 
-            "text": "Software running\n\n\n\n\nAs abovementioned, after preprocessing, running fine-mapping software is usually straightforward and you are recommended to look through each software's documentation  \n\n\nPAINTOR\n\n\nExample code\n\n\npaintor -input input_loci_list\n-in input_dir\n-out output_dir\n-Zhead Zscore\n-LDname ld\n-enumerate 1\n-annotations annotation1,annotation2,annotation3\n\n\n\nfgwas\n\n\nExample code\n\n\nfgwas -i input_file\n-fine\n-print\n-w annotation1+annotation2\n-o outputfile\n\n\n\nCAVIAR\n\n\nCAVIARBF", 
+            "text": "Software running\n\n\n\n\nAs abovementioned, after preprocessing, running fine-mapping software is usually straightforward and you are recommended to look through each software's documentation  \n\n\nPAINTOR\n\n\n\n\nExample code\n\n\npaintor -input input_loci_list\n-in input_dir\n-out output_dir\n-Zhead Zscore\n-LDname ld\n-enumerate 1\n-annotations annotation1,annotation2,annotation3\n\n\n\nfgwas\n\n\n\n\nExample code\n\n\nfgwas -i input_file\n-fine\n-print\n-w annotation1+annotation2\n-o outputfile\n\n\n\nCAVIAR\n\n\n\n\nCAVIARBF", 
             "title": "Software Running"
         }, 
         {
@@ -227,7 +227,7 @@
         }, 
         {
             "location": "/reference/", 
-            "text": "Reference\n\n\n\n\nApproximately independent linkage disequilibrium blocks in human populations\n\n\nPaper: \nPickrell et al. Bioinformatics. 2016\n\nWebsite: \nhttps://bitbucket.org/nygcresearch/ldetect-data/src\n\n\nPAINTOR\n\n\nPaper: \nKichaev et al. PLOS Genetics, 2014\n, \nKichaev et al. American Journal of Human Genetics, 2015\n, \nKichaev et al. Bioinformatics, 2016\n\nWebsite: \nhttps://github.com/gkichaev/PAINTOR_V3.0\n\n\nfgwas", 
+            "text": "Reference\n\n\n\n\nApproximately independent linkage disequilibrium blocks in human populations\n\n\nPaper: \nPickrell et al. Bioinformatics. 2016\n\nWebsite: \nhttps://bitbucket.org/nygcresearch/ldetect-data/src\n\n\nPAINTOR\n\n\nPaper: \nKichaev et al. PLOS Genetics, 2014\n, \nKichaev et al. American Journal of Human Genetics, 2015\n, \nKichaev et al. Bioinformatics, 2016\n\nWebsite: \nhttps://github.com/gkichaev/PAINTOR_V3.0\n\n\nfgwas\n\n\nPaper: \nPickrell American Journal of Human Genetics, 2014\n\nWebsite: \nhttps://github.com/joepickrell/fgwas\n\n\nCAVIAR\n\n\nPaper: \nHormozdiari et al. Genetics, 2014\n\nWebsite: \nhttp://genetics.cs.ucla.edu/caviar/\n\n\nCAVIARBF\n\n\nPaper: \nChen et al. Genetics, 2015\n\nWebsite: \nhttps://bitbucket.org/Wenan/caviarbf", 
             "title": "Reference"
         }, 
         {
@@ -247,8 +247,18 @@
         }, 
         {
             "location": "/reference/#fgwas", 
-            "text": "", 
+            "text": "Paper:  Pickrell American Journal of Human Genetics, 2014 \nWebsite:  https://github.com/joepickrell/fgwas", 
             "title": "fgwas"
+        }, 
+        {
+            "location": "/reference/#caviar", 
+            "text": "Paper:  Hormozdiari et al. Genetics, 2014 \nWebsite:  http://genetics.cs.ucla.edu/caviar/", 
+            "title": "CAVIAR"
+        }, 
+        {
+            "location": "/reference/#caviarbf", 
+            "text": "Paper:  Chen et al. Genetics, 2015 \nWebsite:  https://bitbucket.org/Wenan/caviarbf", 
+            "title": "CAVIARBF"
         }
     ]
 }
