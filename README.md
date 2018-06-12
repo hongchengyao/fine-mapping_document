@@ -158,6 +158,12 @@ to be added
 
 
 ## 4. Functional annotation generation
+
+The generation of functional annotation matrix relies on two types of information (files)
+
+1. The functional annotation bed files
+2. The chromosome and position information of each SNP from GWAS summary data file
+
 ### If using PAINTOR script to generate functional annotation matrix
 chr [**required**]  
 pos [**required**]  
