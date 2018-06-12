@@ -10,3 +10,4 @@ pages:
   - Reference: 'reference.md'
 theme: readthedocs
 repo_name: 'GitHub'
+repo_url: https://github.com/hongchengyao/fine-mapping_document/tree/master
