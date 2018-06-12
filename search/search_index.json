@@ -2,18 +2,18 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Finemapping Tutorial\n\n\nIntroduction - General process of GWAS fine-mapping\n\n\nPreprocessing\n\n\nUsually this step is complex and time consuming, and this tutorial will \nfocus on this step\n  \n\n\n\n\nFile formatting  \n\n\nFile splitting  \n\n\nLD matrix generation  \n\n\nFunctional annotation matrix generation  \n\n\n\n\nSoftware running\n\n\nAfter the preprocessing, running fine-mapping software is usually straightforward\n\n\n\n\nSpecify parameters for different softwares\n\n\n\n\nFor test again", 
+            "text": "Introduction\n\n\nGeneral process of GWAS fine-mapping\n\n\nPreprocessing\n\n\nUsually this step is complex and time consuming, and this tutorial will \nfocus on this step\n  \n\n\n\n\nFile formatting  \n\n\nFile splitting  \n\n\nLD matrix generation  \n\n\nFunctional annotation matrix generation  \n\n\n\n\nSoftware running\n\n\nAfter the preprocessing, running fine-mapping software is usually straightforward\n\n\n\n\nSpecify parameters for different softwares\n\n\n\n\nFor test again", 
             "title": "Introduction"
         }, 
         {
-            "location": "/#finemapping-tutorial", 
+            "location": "/#introduction", 
             "text": "", 
-            "title": "Finemapping Tutorial"
+            "title": "Introduction"
         }, 
         {
-            "location": "/#introduction-general-process-of-gwas-fine-mapping", 
+            "location": "/#general-process-of-gwas-fine-mapping", 
             "text": "", 
-            "title": "Introduction - General process of GWAS fine-mapping"
+            "title": "General process of GWAS fine-mapping"
         }, 
         {
             "location": "/#preprocessing", 
