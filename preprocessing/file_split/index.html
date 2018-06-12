@@ -54,7 +54,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Preprocessing</span>
+    <span class="caption-text">Data Preprocessing</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -121,7 +121,7 @@
     
       
         
-          <li>Preprocessing &raquo;</li>
+          <li>Data Preprocessing &raquo;</li>
         
       
     
@@ -136,13 +136,27 @@
             <div class="section">
               
                 <h1 id="file-splitting">File splitting</h1>
+<hr />
 <p>The idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the <a href="https://bitbucket.org/nygcresearch/ldetect-data">approximately independent LD block</a>.  </p>
 <h2 id="approximately-independent-ld-block">Approximately independent LD block</h2>
-<p>1) Read the range of each LD block from the approximately independent LD block file<br />
-2) Use tabix to extract the SNPs from the GWAS file according to the LD block range<br />
-3) Filter loci by Pvalue/Zscore since there are ~1500 LD blocks  </p>
+<ol>
+<li>Read the range of each LD block from the approximately independent LD block file</li>
+<li>Use tabix to extract the SNPs from the GWAS file according to the LD block range</li>
+<li>Filter loci by Pvalue/Zscore since there are <strong>thousands</strong> of LD blocks  </li>
+</ol>
+<h3 id="example-ld-block-file">Example LD block file</h3>
+<pre><code>chr start stop
+chr1 10583 1892607
+chr1 1892607 3582736
+chr1 3582736 4380811
+chr1 4380811 5913893
+...
+</code></pre>
 <h3 id="example-code">Example code</h3>
-<p>Note: This should not be used directly since it applies to specific files</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should not be used directly since it applies to specific files</p>
+</div>
 <pre><code>bgzip gwas_summary_temp_sorted
 tabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz
 cat fourier_ls-all.bed | while read line
@@ -152,10 +166,11 @@ do
     chrnum=${chrnum// /}
     start=${array[1]// /}
     end=${array[2]// /}
-    if [ "${start}" != "start" ]; then
+    if [ &quot;${start}&quot; != &quot;start&quot; ]; then
     tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} &gt; output.${chrnum}_${start}_${end}
 done
 </code></pre>
+
 <h2 id="other-methods">Other methods</h2>
 <p>It is not necessary to split the genome into loci by approximately independent LD block. Sometimes people may just select the lead SNP and include SNPs within 500K bp of the lead SNP on both sides. If you have already define the loci somehow, it's OK to just skip this step. </p>
               
@@ -177,6 +192,8 @@ done
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>Copyright © 2018 Hongcheng Yao</p>
     
   </div>
 

@@ -54,7 +54,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Preprocessing</span>
+    <span class="caption-text">Data Preprocessing</span>
     <ul class="subnav">
                 <li class=" current">
                     
@@ -125,7 +125,7 @@
     
       
         
-          <li>Preprocessing &raquo;</li>
+          <li>Data Preprocessing &raquo;</li>
         
       
     
@@ -141,6 +141,7 @@
               
                 <h1 id="file-formatting">File formatting</h1>
 <h2 id="paintor">PAINTOR</h2>
+<hr />
 <h3 id="input-requirement">Input requirement</h3>
 <ul>
 <li>Locus file (contain Zscore)</li>
@@ -151,14 +152,61 @@
 For LD matrix file, if you have the raw genotype data, you can generate the LD matrix yourself, but if you don't, you can use the 1000 Genome data as the reference and use the script provided by PAINTOR to generate the LD matrix<br />
 Note: Snps in the locus file must be in the same order as in the LD matrix file and the annotation matrix file</p>
 <h3 id="if-finemapping-alone">If finemapping alone</h3>
-<p>Zscore [<strong>required</strong>]  </p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zscore</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="if-using-1000g-reference-to-generate-ld-matrix-most-common-case">If using 1000G reference to generate LD matrix (most common case)</h3>
-<p>chr [<strong>required</strong>]<br />
-pos [<strong>required</strong>]<br />
-effective allele [<strong>required</strong>]<br />
-baseline allele [<strong>required</strong>] <br />
-Zscore [<strong>required</strong>]</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>pos</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>effective allele</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>baseline allele</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Zscore</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="fgwas">fgwas</h2>
+<hr />
 <h3 id="input-requirement_1">Input requirement</h3>
 <ul>
 <li>Only one file containing Zscore and functional annotation</li>
@@ -168,59 +216,287 @@ Zscore [<strong>required</strong>]</p>
 <h3 id="quantitative-trait">Quantitative trait</h3>
 <p>The columns have no enforced order, but are identified from the header  </p>
 <h4 id="type-1">Type 1</h4>
-<p>SNPID [<strong>required</strong>]<br />
-CHR [<strong>required</strong>]<br />
-POS [<strong>required</strong>]<br />
-F [<strong>required</strong>]allele frequency of one of the alleles of the SNP<br />
-Z [<strong>required</strong>]  Zscore<br />
-N [<strong>required</strong>] sample size<br />
-SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
-annotation1 [optional]<br />
-annotation2 [optional]<br />
-...</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SNPID</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>CHR</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>POS</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td><strong>required</strong></td>
+<td>allele frequency of one of the alleles of the SNP</td>
+</tr>
+<tr>
+<td>Z</td>
+<td><strong>required</strong></td>
+<td>Zscore</td>
+</tr>
+<tr>
+<td>N</td>
+<td><strong>required</strong></td>
+<td>sample size</td>
+</tr>
+<tr>
+<td>SEGNUMBER</td>
+<td><strong>required</strong></td>
+<td>each locus should have a unique SEGNUMBER, and the file should be ordered accordingly</td>
+</tr>
+<tr>
+<td>annotation1</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>annotation2</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="type-2">Type 2</h4>
-<p>SNPID [<strong>required</strong>]<br />
-CHR [<strong>required</strong>]<br />
-POS [<strong>required</strong>]<br />
-F [<strong>required but not used</strong>] allele frequency of one of the alleles of the SNP<br />
-Z [<strong>required</strong>]  Zscore<br />
-N [<strong>required but not used</strong>] sample size<br />
-SE [<strong>required</strong>]<br />
-SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
-annotation1 [optional]<br />
-annotation2 [optional]<br />
-...</p>
-<p>Note: for type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SNPID</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>CHR</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>POS</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td><strong>required but not used</strong></td>
+<td>allele frequency of one of the alleles of the SNP</td>
+</tr>
+<tr>
+<td>Z</td>
+<td><strong>required</strong></td>
+<td>Zscore</td>
+</tr>
+<tr>
+<td>N</td>
+<td><strong>required but not used</strong></td>
+<td>sample size</td>
+</tr>
+<tr>
+<td>SE</td>
+<td><strong>required</strong></td>
+<td>standard error</td>
+</tr>
+<tr>
+<td>SEGNUMBER</td>
+<td><strong>required</strong></td>
+<td>each locus should have a unique SEGNUMBER, and the file should be ordered accordingly</td>
+</tr>
+<tr>
+<td>annotation1</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>annotation2</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>for type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used</p>
+</div>
 <h3 id="casecontrol-studies">Case/control studies</h3>
 <h4 id="type-1_1">Type 1</h4>
-<p>SNPID [<strong>required</strong>]<br />
-CHR [<strong>required</strong>]<br />
-POS [<strong>required</strong>]<br />
-F [<strong>required</strong>]allele frequency of one of the alleles of the SNP<br />
-Z [<strong>required</strong>]  Zscore<br />
-NCASE [<strong>required</strong>] number of cases used in the association study at this SNP<br />
-NCONTROL  [<strong>required</strong>] number of controls used in the association study at this SNP<br />
-SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
-annotation1 [optional]<br />
-annotation2 [optional]<br />
-...</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SNPID</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>CHR</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>POS</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td><strong>required</strong></td>
+<td>allele frequency of one of the alleles of the SNP</td>
+</tr>
+<tr>
+<td>Z</td>
+<td><strong>required</strong></td>
+<td>Zscore</td>
+</tr>
+<tr>
+<td>NCASE</td>
+<td><strong>required</strong></td>
+<td>number of cases used in the association study at this SNP</td>
+</tr>
+<tr>
+<td>NCONTROL</td>
+<td><strong>required</strong></td>
+<td>number of controls used in the association study at this SNP</td>
+</tr>
+<tr>
+<td>SEGNUMBER</td>
+<td><strong>required</strong></td>
+<td>each locus should have a unique SEGNUMBER, and the file should be ordered according to this column</td>
+</tr>
+<tr>
+<td>annotation1</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>annotation2</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h4 id="type-2_1">Type 2</h4>
-<p>SNPID [<strong>required</strong>]<br />
-CHR [<strong>required</strong>]<br />
-POS [<strong>required</strong>]<br />
-F [<strong>required but not used</strong>]allele frequency of one of the alleles of the SNP<br />
-Z [<strong>required</strong>]  Zscore<br />
-NCASE [<strong>required but not used</strong>] number of cases used in the association study at this SNP<br />
-NCONTROL  [<strong>required but not used</strong>] number of controls used in the association study at this SNP<br />
-SE [<strong>required</strong>]<br />
-SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
-annotation1 [optional]<br />
-annotation2 [optional]<br />
-...</p>
-<p>Note: for type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SNPID</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>CHR</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>POS</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>F</td>
+<td><strong>required but not used</strong></td>
+<td>allele frequency of one of the alleles of the SNP</td>
+</tr>
+<tr>
+<td>Z</td>
+<td><strong>required</strong></td>
+<td>Zscore</td>
+</tr>
+<tr>
+<td>NCASE</td>
+<td><strong>required but not used</strong></td>
+<td>number of cases used in the association study at this SNP</td>
+</tr>
+<tr>
+<td>NCONTROL</td>
+<td><strong>required but not used</strong></td>
+<td>number of controls used in the association study at this SNP</td>
+</tr>
+<tr>
+<td>SE</td>
+<td>standard error</td>
+<td><strong>required</strong></td>
+</tr>
+<tr>
+<td>SEGNUMBER</td>
+<td><strong>required</strong></td>
+<td>each locus should have a unique SEGNUMBER, and the file should be ordered according to this column</td>
+</tr>
+<tr>
+<td>annotation1</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>annotation2</td>
+<td>optional</td>
+<td></td>
+</tr>
+<tr>
+<td>...</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used</p>
+</div>
 <h2 id="caviar">CAVIAR</h2>
+<hr />
 <p>to be added</p>
 <h2 id="caviarbf">CAVIARBF</h2>
+<hr />
 <p>to be added</p>
               
             </div>
@@ -241,6 +517,8 @@ annotation2 [optional]<br />
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>Copyright © 2018 Hongcheng Yao</p>
     
   </div>
 

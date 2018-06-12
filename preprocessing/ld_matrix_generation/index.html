@@ -54,7 +54,7 @@
           
             <li class="toctree-l1">
 		
-    <span class="caption-text">Preprocessing</span>
+    <span class="caption-text">Data Preprocessing</span>
     <ul class="subnav">
                 <li class="">
                     
@@ -121,7 +121,7 @@
     
       
         
-          <li>Preprocessing &raquo;</li>
+          <li>Data Preprocessing &raquo;</li>
         
       
     
@@ -135,31 +135,83 @@
           <div role="main">
             <div class="section">
               
-                <h2 id="ld-matrix-generation">LD matrix generation</h2>
-<p>Note: Snps in the fine-mapping file should be in the same order as in the LD matrix file</p>
-<h3 id="ld-matrix-generation-using-paintor-script">LD matrix generation using PAINTOR script</h3>
-<p>chr [<strong>required</strong>] it is used to choose the reference file <br />
-pos [<strong>required</strong>]<br />
-effective allele [<strong>required</strong>]<br />
-baseline allele [<strong>required</strong>]<br />
-Zscore [<strong>required</strong>]<br />
-1000g reference [<strong>required</strong>]<br />
-1000g panel file [<strong>required</strong>]<br />
-population ethnicity [<strong>required</strong>]  </p>
-<h4 id="example-code">Example code</h4>
-<p>Note: This should not be used directly since it applies to specific files</p>
-<pre><code>python CalcLD_1KG_VCF.py
---locus gwas_summary_3_4750808.processed
---reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz
---map integrated_call_samples_v3.20130502.ALL.panel
---effect_allele effect_allele
---alt_allele baseline_allele
---population EAS
---Zhead Zscore
---out_name gwas_summary_3_4750808.processed
---position pos
+                <h1 id="ld-matrix-generation">LD matrix generation</h1>
+<hr />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Snps in the fine-mapping file should be in the same order as in the LD matrix file</p>
+</div>
+<h2 id="ld-matrix-generation-using-paintor-script">LD matrix generation using PAINTOR script</h2>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Option</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chr</td>
+<td><strong>required</strong></td>
+<td>Used to choose the reference file</td>
+</tr>
+<tr>
+<td>pos</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>effective allele</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>baseline allele</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>Zscore</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>1000g reference</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>1000g panel file</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>population ethnicity</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-code">Example code</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This should not be used directly since it applies to specific files</p>
+</div>
+<pre><code>    python CalcLD_1KG_VCF.py
+    --locus gwas_summary_3_4750808.processed
+    --reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz
+    --map integrated_call_samples_v3.20130502.ALL.panel
+    --effect_allele effect_allele
+    --alt_allele baseline_allele
+    --population EAS
+    --Zhead Zscore
+    --out_name gwas_summary_3_4750808.processed
+    --position pos
 </code></pre>
-<h3 id="ld-matrix-generation-using-raw-genotype-data-and-plink">LD matrix generation using raw genotype data and Plink</h3>
+
+<h2 id="ld-matrix-generation-using-raw-genotype-data-and-plink">LD matrix generation using raw genotype data and Plink</h2>
 <p>to be added</p>
               
             </div>
@@ -180,6 +232,8 @@ population ethnicity [<strong>required</strong>]  </p>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
+    
+      <p>Copyright © 2018 Hongcheng Yao</p>
     
   </div>
 

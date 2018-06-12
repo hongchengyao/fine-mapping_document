@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Introduction\n\n\nGeneral process of GWAS fine-mapping\n\n\nPreprocessing\n\n\nUsually this step is complex and time consuming, and this tutorial will \nfocus on this step\n  \n\n\n\n\nFile formatting  \n\n\nFile splitting  \n\n\nLD matrix generation  \n\n\nFunctional annotation matrix generation  \n\n\n\n\nSoftware running\n\n\nAfter the preprocessing, running fine-mapping software is usually straightforward\n\n\n\n\nSpecify parameters for different softwares\n\n\n\n\nFor test again", 
+            "text": "Introduction\n\n\n\n\nGeneral process of GWAS fine-mapping\n\n\nData preprocessing\n\n\nUsually this step is complex and time consuming, and this tutorial will \nfocus on this step\n  \n\n\n\n\nFile formatting  \n\n\nFile splitting  \n\n\nLD matrix generation  \n\n\nFunctional annotation matrix generation  \n\n\n\n\nSoftware running\n\n\nAfter the preprocessing, running fine-mapping software is usually straightforward\n\n\n\n\nSpecify parameters for different softwares", 
             "title": "Introduction"
         }, 
         {
@@ -16,18 +16,18 @@
             "title": "General process of GWAS fine-mapping"
         }, 
         {
-            "location": "/#preprocessing", 
+            "location": "/#data-preprocessing", 
             "text": "Usually this step is complex and time consuming, and this tutorial will  focus on this step      File formatting    File splitting    LD matrix generation    Functional annotation matrix generation", 
-            "title": "Preprocessing"
+            "title": "Data preprocessing"
         }, 
         {
             "location": "/#software-running", 
-            "text": "After the preprocessing, running fine-mapping software is usually straightforward   Specify parameters for different softwares   For test again", 
+            "text": "After the preprocessing, running fine-mapping software is usually straightforward   Specify parameters for different softwares", 
             "title": "Software running"
         }, 
         {
             "location": "/preprocessing/file_format/", 
-            "text": "File formatting\n\n\nPAINTOR\n\n\nInput requirement\n\n\n\n\nLocus file (contain Zscore)\n\n\nLD matrix file\n\n\nAnnotation matrix file\n\n\n\n\nFor locus file, first line must be the header, only Zscore is required, other information could also be added.\n\nFor LD matrix file, if you have the raw genotype data, you can generate the LD matrix yourself, but if you don't, you can use the 1000 Genome data as the reference and use the script provided by PAINTOR to generate the LD matrix\n\nNote: Snps in the locus file must be in the same order as in the LD matrix file and the annotation matrix file\n\n\nIf finemapping alone\n\n\nZscore [\nrequired\n]  \n\n\nIf using 1000G reference to generate LD matrix (most common case)\n\n\nchr [\nrequired\n]\n\npos [\nrequired\n]\n\neffective allele [\nrequired\n]\n\nbaseline allele [\nrequired\n] \n\nZscore [\nrequired\n]\n\n\nfgwas\n\n\nInput requirement\n\n\n\n\nOnly one file containing Zscore and functional annotation\n\n\n\n\nfgwas does not require a LD matrix file, but it require the Zscore and the annotations to be included into a single file. And all loci should be merged into one file and identified by a SEGNUMBER column.\n\n\nIn addition, it has different input requirement for quantitative trait and case-control trait  \n\n\nQuantitative trait\n\n\nThe columns have no enforced order, but are identified from the header  \n\n\nType 1\n\n\nSNPID [\nrequired\n]\n\nCHR [\nrequired\n]\n\nPOS [\nrequired\n]\n\nF [\nrequired\n]allele frequency of one of the alleles of the SNP\n\nZ [\nrequired\n]  Zscore\n\nN [\nrequired\n] sample size\n\nSEGNUMBER [\nrequired\n] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column\n\nannotation1 [optional]\n\nannotation2 [optional]\n\n...\n\n\nType 2\n\n\nSNPID [\nrequired\n]\n\nCHR [\nrequired\n]\n\nPOS [\nrequired\n]\n\nF [\nrequired but not used\n] allele frequency of one of the alleles of the SNP\n\nZ [\nrequired\n]  Zscore\n\nN [\nrequired but not used\n] sample size\n\nSE [\nrequired\n]\n\nSEGNUMBER [\nrequired\n] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column\n\nannotation1 [optional]\n\nannotation2 [optional]\n\n...\n\n\nNote: for type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used\n\n\nCase/control studies\n\n\nType 1\n\n\nSNPID [\nrequired\n]\n\nCHR [\nrequired\n]\n\nPOS [\nrequired\n]\n\nF [\nrequired\n]allele frequency of one of the alleles of the SNP\n\nZ [\nrequired\n]  Zscore\n\nNCASE [\nrequired\n] number of cases used in the association study at this SNP\n\nNCONTROL  [\nrequired\n] number of controls used in the association study at this SNP\n\nSEGNUMBER [\nrequired\n] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column\n\nannotation1 [optional]\n\nannotation2 [optional]\n\n...\n\n\nType 2\n\n\nSNPID [\nrequired\n]\n\nCHR [\nrequired\n]\n\nPOS [\nrequired\n]\n\nF [\nrequired but not used\n]allele frequency of one of the alleles of the SNP\n\nZ [\nrequired\n]  Zscore\n\nNCASE [\nrequired but not used\n] number of cases used in the association study at this SNP\n\nNCONTROL  [\nrequired but not used\n] number of controls used in the association study at this SNP\n\nSE [\nrequired\n]\n\nSEGNUMBER [\nrequired\n] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column\n\nannotation1 [optional]\n\nannotation2 [optional]\n\n...\n\n\nNote: for type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used\n\n\nCAVIAR\n\n\nto be added\n\n\nCAVIARBF\n\n\nto be added", 
+            "text": "File formatting\n\n\nPAINTOR\n\n\n\n\nInput requirement\n\n\n\n\nLocus file (contain Zscore)\n\n\nLD matrix file\n\n\nAnnotation matrix file\n\n\n\n\nFor locus file, first line must be the header, only Zscore is required, other information could also be added.\n\nFor LD matrix file, if you have the raw genotype data, you can generate the LD matrix yourself, but if you don't, you can use the 1000 Genome data as the reference and use the script provided by PAINTOR to generate the LD matrix\n\nNote: Snps in the locus file must be in the same order as in the LD matrix file and the annotation matrix file\n\n\nIf finemapping alone\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nZscore\n\n\nrequired\n\n\n\n\n\n\n\n\n\n\nIf using 1000G reference to generate LD matrix (most common case)\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nchr\n\n\nrequired\n\n\n\n\n\n\n\n\npos\n\n\nrequired\n\n\n\n\n\n\n\n\neffective allele\n\n\nrequired\n\n\n\n\n\n\n\n\nbaseline allele\n\n\nrequired\n\n\n\n\n\n\n\n\nZscore\n\n\nrequired\n\n\n\n\n\n\n\n\n\n\nfgwas\n\n\n\n\nInput requirement\n\n\n\n\nOnly one file containing Zscore and functional annotation\n\n\n\n\nfgwas does not require a LD matrix file, but it require the Zscore and the annotations to be included into a single file. And all loci should be merged into one file and identified by a SEGNUMBER column.\n\n\nIn addition, it has different input requirement for quantitative trait and case-control trait  \n\n\nQuantitative trait\n\n\nThe columns have no enforced order, but are identified from the header  \n\n\nType 1\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nSNPID\n\n\nrequired\n\n\n\n\n\n\n\n\nCHR\n\n\nrequired\n\n\n\n\n\n\n\n\nPOS\n\n\nrequired\n\n\n\n\n\n\n\n\nF\n\n\nrequired\n\n\nallele frequency of one of the alleles of the SNP\n\n\n\n\n\n\nZ\n\n\nrequired\n\n\nZscore\n\n\n\n\n\n\nN\n\n\nrequired\n\n\nsample size\n\n\n\n\n\n\nSEGNUMBER\n\n\nrequired\n\n\neach locus should have a unique SEGNUMBER, and the file should be ordered accordingly\n\n\n\n\n\n\nannotation1\n\n\noptional\n\n\n\n\n\n\n\n\nannotation2\n\n\noptional\n\n\n\n\n\n\n\n\n...\n\n\n\n\n\n\n\n\n\n\n\n\nType 2\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nSNPID\n\n\nrequired\n\n\n\n\n\n\n\n\nCHR\n\n\nrequired\n\n\n\n\n\n\n\n\nPOS\n\n\nrequired\n\n\n\n\n\n\n\n\nF\n\n\nrequired but not used\n\n\nallele frequency of one of the alleles of the SNP\n\n\n\n\n\n\nZ\n\n\nrequired\n\n\nZscore\n\n\n\n\n\n\nN\n\n\nrequired but not used\n\n\nsample size\n\n\n\n\n\n\nSE\n\n\nrequired\n\n\nstandard error\n\n\n\n\n\n\nSEGNUMBER\n\n\nrequired\n\n\neach locus should have a unique SEGNUMBER, and the file should be ordered accordingly\n\n\n\n\n\n\nannotation1\n\n\noptional\n\n\n\n\n\n\n\n\nannotation2\n\n\noptional\n\n\n\n\n\n\n\n\n...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nfor type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used\n\n\n\n\nCase/control studies\n\n\nType 1\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nSNPID\n\n\nrequired\n\n\n\n\n\n\n\n\nCHR\n\n\nrequired\n\n\n\n\n\n\n\n\nPOS\n\n\nrequired\n\n\n\n\n\n\n\n\nF\n\n\nrequired\n\n\nallele frequency of one of the alleles of the SNP\n\n\n\n\n\n\nZ\n\n\nrequired\n\n\nZscore\n\n\n\n\n\n\nNCASE\n\n\nrequired\n\n\nnumber of cases used in the association study at this SNP\n\n\n\n\n\n\nNCONTROL\n\n\nrequired\n\n\nnumber of controls used in the association study at this SNP\n\n\n\n\n\n\nSEGNUMBER\n\n\nrequired\n\n\neach locus should have a unique SEGNUMBER, and the file should be ordered according to this column\n\n\n\n\n\n\nannotation1\n\n\noptional\n\n\n\n\n\n\n\n\nannotation2\n\n\noptional\n\n\n\n\n\n\n\n\n...\n\n\n\n\n\n\n\n\n\n\n\n\nType 2\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nSNPID\n\n\nrequired\n\n\n\n\n\n\n\n\nCHR\n\n\nrequired\n\n\n\n\n\n\n\n\nPOS\n\n\nrequired\n\n\n\n\n\n\n\n\nF\n\n\nrequired but not used\n\n\nallele frequency of one of the alleles of the SNP\n\n\n\n\n\n\nZ\n\n\nrequired\n\n\nZscore\n\n\n\n\n\n\nNCASE\n\n\nrequired but not used\n\n\nnumber of cases used in the association study at this SNP\n\n\n\n\n\n\nNCONTROL\n\n\nrequired but not used\n\n\nnumber of controls used in the association study at this SNP\n\n\n\n\n\n\nSE\n\n\nstandard error\n\n\nrequired\n\n\n\n\n\n\nSEGNUMBER\n\n\nrequired\n\n\neach locus should have a unique SEGNUMBER, and the file should be ordered according to this column\n\n\n\n\n\n\nannotation1\n\n\noptional\n\n\n\n\n\n\n\n\nannotation2\n\n\noptional\n\n\n\n\n\n\n\n\n...\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nFor type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used\n\n\n\n\nCAVIAR\n\n\n\n\nto be added\n\n\nCAVIARBF\n\n\n\n\nto be added", 
             "title": "1. File formatting"
         }, 
         {
@@ -47,12 +47,12 @@
         }, 
         {
             "location": "/preprocessing/file_format/#if-finemapping-alone", 
-            "text": "Zscore [ required ]", 
+            "text": "Header  Option  Note      Zscore  required", 
             "title": "If finemapping alone"
         }, 
         {
             "location": "/preprocessing/file_format/#if-using-1000g-reference-to-generate-ld-matrix-most-common-case", 
-            "text": "chr [ required ] \npos [ required ] \neffective allele [ required ] \nbaseline allele [ required ]  \nZscore [ required ]", 
+            "text": "Header  Option  Note      chr  required     pos  required     effective allele  required     baseline allele  required     Zscore  required", 
             "title": "If using 1000G reference to generate LD matrix (most common case)"
         }, 
         {
@@ -72,12 +72,12 @@
         }, 
         {
             "location": "/preprocessing/file_format/#type-1", 
-            "text": "SNPID [ required ] \nCHR [ required ] \nPOS [ required ] \nF [ required ]allele frequency of one of the alleles of the SNP \nZ [ required ]  Zscore \nN [ required ] sample size \nSEGNUMBER [ required ] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column \nannotation1 [optional] \nannotation2 [optional] \n...", 
+            "text": "Header  Option  Note      SNPID  required     CHR  required     POS  required     F  required  allele frequency of one of the alleles of the SNP    Z  required  Zscore    N  required  sample size    SEGNUMBER  required  each locus should have a unique SEGNUMBER, and the file should be ordered accordingly    annotation1  optional     annotation2  optional     ...", 
             "title": "Type 1"
         }, 
         {
             "location": "/preprocessing/file_format/#type-2", 
-            "text": "SNPID [ required ] \nCHR [ required ] \nPOS [ required ] \nF [ required but not used ] allele frequency of one of the alleles of the SNP \nZ [ required ]  Zscore \nN [ required but not used ] sample size \nSE [ required ] \nSEGNUMBER [ required ] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column \nannotation1 [optional] \nannotation2 [optional] \n...  Note: for type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used", 
+            "text": "Header  Option  Note      SNPID  required     CHR  required     POS  required     F  required but not used  allele frequency of one of the alleles of the SNP    Z  required  Zscore    N  required but not used  sample size    SE  required  standard error    SEGNUMBER  required  each locus should have a unique SEGNUMBER, and the file should be ordered accordingly    annotation1  optional     annotation2  optional     ...        Warning  for type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used", 
             "title": "Type 2"
         }, 
         {
@@ -87,12 +87,12 @@
         }, 
         {
             "location": "/preprocessing/file_format/#type-1_1", 
-            "text": "SNPID [ required ] \nCHR [ required ] \nPOS [ required ] \nF [ required ]allele frequency of one of the alleles of the SNP \nZ [ required ]  Zscore \nNCASE [ required ] number of cases used in the association study at this SNP \nNCONTROL  [ required ] number of controls used in the association study at this SNP \nSEGNUMBER [ required ] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column \nannotation1 [optional] \nannotation2 [optional] \n...", 
+            "text": "Header  Option  Note      SNPID  required     CHR  required     POS  required     F  required  allele frequency of one of the alleles of the SNP    Z  required  Zscore    NCASE  required  number of cases used in the association study at this SNP    NCONTROL  required  number of controls used in the association study at this SNP    SEGNUMBER  required  each locus should have a unique SEGNUMBER, and the file should be ordered according to this column    annotation1  optional     annotation2  optional     ...", 
             "title": "Type 1"
         }, 
         {
             "location": "/preprocessing/file_format/#type-2_1", 
-            "text": "SNPID [ required ] \nCHR [ required ] \nPOS [ required ] \nF [ required but not used ]allele frequency of one of the alleles of the SNP \nZ [ required ]  Zscore \nNCASE [ required but not used ] number of cases used in the association study at this SNP \nNCONTROL  [ required but not used ] number of controls used in the association study at this SNP \nSE [ required ] \nSEGNUMBER [ required ] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column \nannotation1 [optional] \nannotation2 [optional] \n...  Note: for type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used", 
+            "text": "Header  Option  Note      SNPID  required     CHR  required     POS  required     F  required but not used  allele frequency of one of the alleles of the SNP    Z  required  Zscore    NCASE  required but not used  number of cases used in the association study at this SNP    NCONTROL  required but not used  number of controls used in the association study at this SNP    SE  standard error  required    SEGNUMBER  required  each locus should have a unique SEGNUMBER, and the file should be ordered according to this column    annotation1  optional     annotation2  optional     ...        Warning  For type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used", 
             "title": "Type 2"
         }, 
         {
@@ -107,7 +107,7 @@
         }, 
         {
             "location": "/preprocessing/file_split/", 
-            "text": "File splitting\n\n\nThe idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the \napproximately independent LD block\n.  \n\n\nApproximately independent LD block\n\n\n1) Read the range of each LD block from the approximately independent LD block file\n\n2) Use tabix to extract the SNPs from the GWAS file according to the LD block range\n\n3) Filter loci by Pvalue/Zscore since there are ~1500 LD blocks  \n\n\nExample code\n\n\nNote: This should not be used directly since it applies to specific files\n\n\nbgzip gwas_summary_temp_sorted\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [ \"${start}\" != \"start\" ]; then\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} \n output.${chrnum}_${start}_${end}\ndone\n\n\n\nOther methods\n\n\nIt is not necessary to split the genome into loci by approximately independent LD block. Sometimes people may just select the lead SNP and include SNPs within 500K bp of the lead SNP on both sides. If you have already define the loci somehow, it's OK to just skip this step.", 
+            "text": "File splitting\n\n\n\n\nThe idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the \napproximately independent LD block\n.  \n\n\nApproximately independent LD block\n\n\n\n\nRead the range of each LD block from the approximately independent LD block file\n\n\nUse tabix to extract the SNPs from the GWAS file according to the LD block range\n\n\nFilter loci by Pvalue/Zscore since there are \nthousands\n of LD blocks  \n\n\n\n\nExample LD block file\n\n\nchr start stop\nchr1 10583 1892607\nchr1 1892607 3582736\nchr1 3582736 4380811\nchr1 4380811 5913893\n...\n\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\nbgzip gwas_summary_temp_sorted\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [ \n${start}\n != \nstart\n ]; then\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} \n output.${chrnum}_${start}_${end}\ndone\n\n\n\n\nOther methods\n\n\nIt is not necessary to split the genome into loci by approximately independent LD block. Sometimes people may just select the lead SNP and include SNPs within 500K bp of the lead SNP on both sides. If you have already define the loci somehow, it's OK to just skip this step.", 
             "title": "2. File splitting"
         }, 
         {
@@ -117,12 +117,17 @@
         }, 
         {
             "location": "/preprocessing/file_split/#approximately-independent-ld-block", 
-            "text": "1) Read the range of each LD block from the approximately independent LD block file \n2) Use tabix to extract the SNPs from the GWAS file according to the LD block range \n3) Filter loci by Pvalue/Zscore since there are ~1500 LD blocks", 
+            "text": "Read the range of each LD block from the approximately independent LD block file  Use tabix to extract the SNPs from the GWAS file according to the LD block range  Filter loci by Pvalue/Zscore since there are  thousands  of LD blocks", 
             "title": "Approximately independent LD block"
         }, 
         {
+            "location": "/preprocessing/file_split/#example-ld-block-file", 
+            "text": "chr start stop\nchr1 10583 1892607\nchr1 1892607 3582736\nchr1 3582736 4380811\nchr1 4380811 5913893\n...", 
+            "title": "Example LD block file"
+        }, 
+        {
             "location": "/preprocessing/file_split/#example-code", 
-            "text": "Note: This should not be used directly since it applies to specific files  bgzip gwas_summary_temp_sorted\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [ \"${start}\" != \"start\" ]; then\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end}   output.${chrnum}_${start}_${end}\ndone", 
+            "text": "Note  This should not be used directly since it applies to specific files   bgzip gwas_summary_temp_sorted\ntabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz\ncat fourier_ls-all.bed | while read line\ndo\n    array=(${line})\n    chrnum=${array[0]#*chr}\n    chrnum=${chrnum// /}\n    start=${array[1]// /}\n    end=${array[2]// /}\n    if [  ${start}  !=  start  ]; then\n    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end}   output.${chrnum}_${start}_${end}\ndone", 
             "title": "Example code"
         }, 
         {
@@ -132,22 +137,22 @@
         }, 
         {
             "location": "/preprocessing/ld_matrix_generation/", 
-            "text": "LD matrix generation\n\n\nNote: Snps in the fine-mapping file should be in the same order as in the LD matrix file\n\n\nLD matrix generation using PAINTOR script\n\n\nchr [\nrequired\n] it is used to choose the reference file \n\npos [\nrequired\n]\n\neffective allele [\nrequired\n]\n\nbaseline allele [\nrequired\n]\n\nZscore [\nrequired\n]\n\n1000g reference [\nrequired\n]\n\n1000g panel file [\nrequired\n]\n\npopulation ethnicity [\nrequired\n]  \n\n\nExample code\n\n\nNote: This should not be used directly since it applies to specific files\n\n\npython CalcLD_1KG_VCF.py\n--locus gwas_summary_3_4750808.processed\n--reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz\n--map integrated_call_samples_v3.20130502.ALL.panel\n--effect_allele effect_allele\n--alt_allele baseline_allele\n--population EAS\n--Zhead Zscore\n--out_name gwas_summary_3_4750808.processed\n--position pos\n\n\n\nLD matrix generation using raw genotype data and Plink\n\n\nto be added", 
+            "text": "LD matrix generation\n\n\n\n\n\n\nNote\n\n\nSnps in the fine-mapping file should be in the same order as in the LD matrix file\n\n\n\n\nLD matrix generation using PAINTOR script\n\n\n\n\n\n\n\n\n\n\nHeader\n\n\nOption\n\n\nNote\n\n\n\n\n\n\n\n\n\n\nchr\n\n\nrequired\n\n\nUsed to choose the reference file\n\n\n\n\n\n\npos\n\n\nrequired\n\n\n\n\n\n\n\n\neffective allele\n\n\nrequired\n\n\n\n\n\n\n\n\nbaseline allele\n\n\nrequired\n\n\n\n\n\n\n\n\nZscore\n\n\nrequired\n\n\n\n\n\n\n\n\n1000g reference\n\n\nrequired\n\n\n\n\n\n\n\n\n1000g panel file\n\n\nrequired\n\n\n\n\n\n\n\n\npopulation ethnicity\n\n\nrequired\n\n\n\n\n\n\n\n\n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n    python CalcLD_1KG_VCF.py\n    --locus gwas_summary_3_4750808.processed\n    --reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz\n    --map integrated_call_samples_v3.20130502.ALL.panel\n    --effect_allele effect_allele\n    --alt_allele baseline_allele\n    --population EAS\n    --Zhead Zscore\n    --out_name gwas_summary_3_4750808.processed\n    --position pos\n\n\n\n\nLD matrix generation using raw genotype data and Plink\n\n\nto be added", 
             "title": "3. LD matrix generation"
         }, 
         {
             "location": "/preprocessing/ld_matrix_generation/#ld-matrix-generation", 
-            "text": "Note: Snps in the fine-mapping file should be in the same order as in the LD matrix file", 
+            "text": "Note  Snps in the fine-mapping file should be in the same order as in the LD matrix file", 
             "title": "LD matrix generation"
         }, 
         {
             "location": "/preprocessing/ld_matrix_generation/#ld-matrix-generation-using-paintor-script", 
-            "text": "chr [ required ] it is used to choose the reference file  \npos [ required ] \neffective allele [ required ] \nbaseline allele [ required ] \nZscore [ required ] \n1000g reference [ required ] \n1000g panel file [ required ] \npopulation ethnicity [ required ]", 
+            "text": "Header  Option  Note      chr  required  Used to choose the reference file    pos  required     effective allele  required     baseline allele  required     Zscore  required     1000g reference  required     1000g panel file  required     population ethnicity  required", 
             "title": "LD matrix generation using PAINTOR script"
         }, 
         {
             "location": "/preprocessing/ld_matrix_generation/#example-code", 
-            "text": "Note: This should not be used directly since it applies to specific files  python CalcLD_1KG_VCF.py\n--locus gwas_summary_3_4750808.processed\n--reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz\n--map integrated_call_samples_v3.20130502.ALL.panel\n--effect_allele effect_allele\n--alt_allele baseline_allele\n--population EAS\n--Zhead Zscore\n--out_name gwas_summary_3_4750808.processed\n--position pos", 
+            "text": "Note  This should not be used directly since it applies to specific files       python CalcLD_1KG_VCF.py\n    --locus gwas_summary_3_4750808.processed\n    --reference ALL.chr3.phase3_shapeit2_mvncall_integrated_v5a.20130502.genotypes.vcf.gz\n    --map integrated_call_samples_v3.20130502.ALL.panel\n    --effect_allele effect_allele\n    --alt_allele baseline_allele\n    --population EAS\n    --Zhead Zscore\n    --out_name gwas_summary_3_4750808.processed\n    --position pos", 
             "title": "Example code"
         }, 
         {
@@ -157,7 +162,7 @@
         }, 
         {
             "location": "/preprocessing/functional_annotation_generation/", 
-            "text": "Functional annotation generation\n\n\nThe generation of functional annotation matrix relies on two types of information (files)\n\n\n\n\nThe functional annotation bed files\n\n\nThe chromosome and position information of each SNP from GWAS summary data file\n\n\n\n\nIf using PAINTOR script to generate functional annotation matrix\n\n\nchr [\nrequired\n]\n\npos [\nrequired\n]  \n\n\nExample code\n\n\nNote: This should not be used directly since it applies to specific files\n\n\npython AnnotateLocus.py\n--input annotation_paths_list\n--locus gwas_summary_3_4750808.processed\n--out gwas_summary_3_4750808.processed.annotations\n--chr chr\n--pos pos\n\n\n\nIf using bedtools to generate functional annotation matrix\n\n\nto be added", 
+            "text": "Functional annotation generation\n\n\n\n\nThe generation of functional annotation matrix relies on two types of information (files)\n\n\n\n\nThe functional annotation bed files\n\n\nThe chromosome and position information of each SNP from GWAS summary data file\n\n\n\n\nIf using PAINTOR script to generate functional annotation matrix\n\n\nchr [\nrequired\n]\n\npos [\nrequired\n]  \n\n\nExample code\n\n\n\n\nNote\n\n\nThis should not be used directly since it applies to specific files\n\n\n\n\n    python AnnotateLocus.py\n    --input annotation_paths_list\n    --locus gwas_summary_3_4750808.processed\n    --out gwas_summary_3_4750808.processed.annotations\n    --chr chr\n    --pos pos\n\n\n\n\nIf using bedtools to generate functional annotation matrix\n\n\nto be added", 
             "title": "4. Functional annotation generation"
         }, 
         {
@@ -172,7 +177,7 @@
         }, 
         {
             "location": "/preprocessing/functional_annotation_generation/#example-code", 
-            "text": "Note: This should not be used directly since it applies to specific files  python AnnotateLocus.py\n--input annotation_paths_list\n--locus gwas_summary_3_4750808.processed\n--out gwas_summary_3_4750808.processed.annotations\n--chr chr\n--pos pos", 
+            "text": "Note  This should not be used directly since it applies to specific files       python AnnotateLocus.py\n    --input annotation_paths_list\n    --locus gwas_summary_3_4750808.processed\n    --out gwas_summary_3_4750808.processed.annotations\n    --chr chr\n    --pos pos", 
             "title": "Example code"
         }, 
         {
@@ -182,7 +187,7 @@
         }, 
         {
             "location": "/software_running/", 
-            "text": "Software running\n\n\nAs abovementioned, after preprocessing, running fine-mapping software is usually straightforward and you are recommended to look through each software's documentation  \n\n\nPAINTOR\n\n\nExample code\n\n\npaintor -input input_loci_list\n-in input_dir\n-out output_dir\n-Zhead Zscore\n-LDname ld\n-enumerate 1\n-annotations annotation1,annotation2,annotation3\n\n\n\nfgwas\n\n\nExample code\n\n\nfgwas -i input_file\n-fine\n-print\n-w annotation1+annotation2\n-o outputfile\n\n\n\nCAVIAR\n\n\nCAVIARBF", 
+            "text": "Software running\n\n\n\n\nAs abovementioned, after preprocessing, running fine-mapping software is usually straightforward and you are recommended to look through each software's documentation  \n\n\nPAINTOR\n\n\nExample code\n\n\npaintor -input input_loci_list\n-in input_dir\n-out output_dir\n-Zhead Zscore\n-LDname ld\n-enumerate 1\n-annotations annotation1,annotation2,annotation3\n\n\n\nfgwas\n\n\nExample code\n\n\nfgwas -i input_file\n-fine\n-print\n-w annotation1+annotation2\n-o outputfile\n\n\n\nCAVIAR\n\n\nCAVIARBF", 
             "title": "Software Running"
         }, 
         {
@@ -222,7 +227,7 @@
         }, 
         {
             "location": "/reference/", 
-            "text": "Reference\n\n\nApproximately independent linkage disequilibrium blocks in human populations\n\n\nPaper: \nPickrell et al. Bioinformatics. 2016\n\nWebsite: \nhttps://bitbucket.org/nygcresearch/ldetect-data/src\n\n\nPAINTOR\n\n\nPaper: \nKichaev et al. PLOS Genetics, 2014\n, \nKichaev et al. American Journal of Human Genetics, 2015\n, \nKichaev et al. Bioinformatics, 2016\n\nWebsite: \nhttps://github.com/gkichaev/PAINTOR_V3.0\n\n\nfgwas", 
+            "text": "Reference\n\n\n\n\nApproximately independent linkage disequilibrium blocks in human populations\n\n\nPaper: \nPickrell et al. Bioinformatics. 2016\n\nWebsite: \nhttps://bitbucket.org/nygcresearch/ldetect-data/src\n\n\nPAINTOR\n\n\nPaper: \nKichaev et al. PLOS Genetics, 2014\n, \nKichaev et al. American Journal of Human Genetics, 2015\n, \nKichaev et al. Bioinformatics, 2016\n\nWebsite: \nhttps://github.com/gkichaev/PAINTOR_V3.0\n\n\nfgwas", 
             "title": "Reference"
         }, 
         {
