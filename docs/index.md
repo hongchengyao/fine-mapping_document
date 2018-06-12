@@ -13,7 +13,7 @@ After the preprocessing, running fine-mapping software is usually straightforwar
 
 - Specify parameters for different softwares
 
-This is for testing
+For test again
 
 
 
