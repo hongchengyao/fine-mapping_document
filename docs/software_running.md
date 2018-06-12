@@ -1,6 +1,7 @@
 # Software running
+---
 As abovementioned, after preprocessing, running fine-mapping software is usually straightforward and you are recommended to look through each software's documentation  
-## [PAINTOR](https://github.com/joepickrell/fgwas/blob/master/man/fgwas_manual.pdf)  
+## [PAINTOR](https://github.com/gkichaev/PAINTOR_V3.0/wiki)  
 ### Example code
 
 	paintor -input input_loci_list

@@ -1,6 +1,7 @@
 # Introduction
+---
 ## General process of GWAS fine-mapping  
-### Preprocessing 
+### Data preprocessing 
 Usually this step is complex and time consuming, and this tutorial will **focus on this step**  
 
 - File formatting  
@@ -12,8 +13,6 @@ Usually this step is complex and time consuming, and this tutorial will **focus 
 After the preprocessing, running fine-mapping software is usually straightforward
 
 - Specify parameters for different softwares
-
-For test again
 
 
 

@@ -1,7 +1,7 @@
 site_name: Fine-mapping Documentation
 pages:
   - Introduction: 'index.md'
-  - Preprocessing:
+  - Data Preprocessing:
     - '1. File formatting': 'preprocessing/file_format.md'
     - '2. File splitting': 'preprocessing/file_split.md'
     - '3. LD matrix generation': 'preprocessing/ld_matrix_generation.md'
@@ -10,3 +10,9 @@ pages:
   - Reference: 'reference.md'
 theme: readthedocs
 repo_name: https://github.com/hongchengyao/fine-mapping_document/tree/master
+copyright: Copyright © 2018 Hongcheng Yao
+markdown_extensions:
+    - toc:
+        permalink: True
+markdown_extensions:
+  - admonition
