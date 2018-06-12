@@ -9,3 +9,4 @@ pages:
   - Software Running: 'software_running.md'
   - Reference: 'reference.md'
 theme: readthedocs
+repo_name: 'GitHub'

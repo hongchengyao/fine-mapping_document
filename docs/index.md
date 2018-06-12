@@ -1,5 +1,5 @@
-# Finemapping Tutorial 
-## Introduction - General process of GWAS fine-mapping  
+# Introduction
+## General process of GWAS fine-mapping  
 ### Preprocessing 
 Usually this step is complex and time consuming, and this tutorial will **focus on this step**  
 
