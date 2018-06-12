@@ -2,6 +2,7 @@
 ---
 As abovementioned, after preprocessing, running fine-mapping software is usually straightforward and you are recommended to look through each software's documentation  
 ## [PAINTOR](https://github.com/gkichaev/PAINTOR_V3.0/wiki)  
+---
 ### Example code
 
 	paintor -input input_loci_list
@@ -13,6 +14,7 @@ As abovementioned, after preprocessing, running fine-mapping software is usually
 	-annotations annotation1,annotation2,annotation3
 
 ## [fgwas](https://github.com/joepickrell/fgwas/blob/master/man/fgwas_manual.pdf)  
+---
 ### Example code
 
 	fgwas -i input_file
@@ -21,7 +23,8 @@ As abovementioned, after preprocessing, running fine-mapping software is usually
 	-w annotation1+annotation2
 	-o outputfile
 ## [CAVIAR](http://genetics.cs.ucla.edu/caviar/manual.html)  
+---
 ## [CAVIARBF](https://bitbucket.org/Wenan/caviarbf/src)
-
+---
 
 

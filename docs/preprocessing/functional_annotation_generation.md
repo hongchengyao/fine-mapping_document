@@ -6,8 +6,16 @@ The generation of functional annotation matrix relies on two types of informatio
 2. The chromosome and position information of each SNP from GWAS summary data file
 
 ## If using PAINTOR script to generate functional annotation matrix
-chr [**required**]  
-pos [**required**]  
+| Header | Option | Note |
+|---|---|---|
+| chr | **required** | |
+| pos | **required** | |
+
+!!! Note
+
+    1. Make sure that the functional annotation bed file are sorted, because the AnnotateLocus.py script used a specific algorithm and unsorted functional annotation bed file will lead to wrong function annotation matrix.
+    2. Make sure that the chromosome nomenclature is the same in the GWAS file and the functional annotation bed file. e.g. both should be chr1 or both should be 1
+
 ### Example code
 
 !!! Note

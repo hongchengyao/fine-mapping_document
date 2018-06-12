@@ -24,8 +24,11 @@ The idea of file splitting is to split the whole genome into loci. There are sev
     This should not be used directly since it applies to specific files
 
 ```
+# comrepss the file using bgzip
 bgzip gwas_summary_temp_sorted
+# make index file using tabix
 tabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz
+# extract range of LD block
 cat fourier_ls-all.bed | while read line
 do
 	array=(${line})
@@ -34,6 +37,7 @@ do
 	start=${array[1]// /}
 	end=${array[2]// /}
 	if [ "${start}" != "start" ]; then
+	# use tabix to extract the LD block from the GWAS file
 	tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} > output.${chrnum}_${start}_${end}
 done
 ```

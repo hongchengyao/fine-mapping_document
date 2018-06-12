@@ -19,6 +19,8 @@
 | 1000g panel file | **required** ||
 | population ethnicity | **required** ||
 
+Usually 1000 genome reference file are splitted into chromosomes, and CalcLD_1KG_VCF.py need to specify reference with matched chromosome
+
 ### Example code
 
 !!! Note
