@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>1. File formatting - Fine-mapping Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "1. File formatting";
+    var mkdocs_page_input_path = "preprocessing/file_format.md";
+    var mkdocs_page_url = "/preprocessing/file_format/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Fine-mapping Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Preprocessing</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">1. File formatting</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#file-formatting">File formatting</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#paintor">PAINTOR</a></li>
+        
+            <li><a class="toctree-l4" href="#fgwas">fgwas</a></li>
+        
+            <li><a class="toctree-l4" href="#caviar">CAVIAR</a></li>
+        
+            <li><a class="toctree-l4" href="#caviarbf">CAVIARBF</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../file_split/">2. File splitting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ld_matrix_generation/">3. LD matrix generation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../functional_annotation_generation/">4. Functional annotation generation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../software_running/">Software Running</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../reference/">Reference</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Fine-mapping Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Preprocessing &raquo;</li>
+        
+      
+    
+    <li>1. File formatting</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="file-formatting">File formatting</h1>
+<h2 id="paintor">PAINTOR</h2>
+<h3 id="input-requirement">Input requirement</h3>
+<ul>
+<li>Locus file (contain Zscore)</li>
+<li>LD matrix file</li>
+<li>Annotation matrix file</li>
+</ul>
+<p>For locus file, first line must be the header, only Zscore is required, other information could also be added.<br />
+For LD matrix file, if you have the raw genotype data, you can generate the LD matrix yourself, but if you don't, you can use the 1000 Genome data as the reference and use the script provided by PAINTOR to generate the LD matrix<br />
+Note: Snps in the locus file must be in the same order as in the LD matrix file and the annotation matrix file</p>
+<h3 id="if-finemapping-alone">If finemapping alone</h3>
+<p>Zscore [<strong>required</strong>]  </p>
+<h3 id="if-using-1000g-reference-to-generate-ld-matrix-most-common-case">If using 1000G reference to generate LD matrix (most common case)</h3>
+<p>chr [<strong>required</strong>]<br />
+pos [<strong>required</strong>]<br />
+effective allele [<strong>required</strong>]<br />
+baseline allele [<strong>required</strong>] <br />
+Zscore [<strong>required</strong>]</p>
+<h2 id="fgwas">fgwas</h2>
+<h3 id="input-requirement_1">Input requirement</h3>
+<ul>
+<li>Only one file containing Zscore and functional annotation</li>
+</ul>
+<p>fgwas does not require a LD matrix file, but it require the Zscore and the annotations to be included into a single file. And all loci should be merged into one file and identified by a SEGNUMBER column.</p>
+<p>In addition, it has different input requirement for quantitative trait and case-control trait  </p>
+<h3 id="quantitative-trait">Quantitative trait</h3>
+<p>The columns have no enforced order, but are identified from the header  </p>
+<h4 id="type-1">Type 1</h4>
+<p>SNPID [<strong>required</strong>]<br />
+CHR [<strong>required</strong>]<br />
+POS [<strong>required</strong>]<br />
+F [<strong>required</strong>]allele frequency of one of the alleles of the SNP<br />
+Z [<strong>required</strong>]  Zscore<br />
+N [<strong>required</strong>] sample size<br />
+SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
+annotation1 [optional]<br />
+annotation2 [optional]<br />
+...</p>
+<h4 id="type-2">Type 2</h4>
+<p>SNPID [<strong>required</strong>]<br />
+CHR [<strong>required</strong>]<br />
+POS [<strong>required</strong>]<br />
+F [<strong>required but not used</strong>] allele frequency of one of the alleles of the SNP<br />
+Z [<strong>required</strong>]  Zscore<br />
+N [<strong>required but not used</strong>] sample size<br />
+SE [<strong>required</strong>]<br />
+SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
+annotation1 [optional]<br />
+annotation2 [optional]<br />
+...</p>
+<p>Note: for type 2, even though input SE will override F and N, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used</p>
+<h3 id="casecontrol-studies">Case/control studies</h3>
+<h4 id="type-1_1">Type 1</h4>
+<p>SNPID [<strong>required</strong>]<br />
+CHR [<strong>required</strong>]<br />
+POS [<strong>required</strong>]<br />
+F [<strong>required</strong>]allele frequency of one of the alleles of the SNP<br />
+Z [<strong>required</strong>]  Zscore<br />
+NCASE [<strong>required</strong>] number of cases used in the association study at this SNP<br />
+NCONTROL  [<strong>required</strong>] number of controls used in the association study at this SNP<br />
+SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
+annotation1 [optional]<br />
+annotation2 [optional]<br />
+...</p>
+<h4 id="type-2_1">Type 2</h4>
+<p>SNPID [<strong>required</strong>]<br />
+CHR [<strong>required</strong>]<br />
+POS [<strong>required</strong>]<br />
+F [<strong>required but not used</strong>]allele frequency of one of the alleles of the SNP<br />
+Z [<strong>required</strong>]  Zscore<br />
+NCASE [<strong>required but not used</strong>] number of cases used in the association study at this SNP<br />
+NCONTROL  [<strong>required but not used</strong>] number of controls used in the association study at this SNP<br />
+SE [<strong>required</strong>]<br />
+SEGNUMBER [<strong>required</strong>] each locus should have a unique SEGNUMBER, and the file should be ordered according to this column<br />
+annotation1 [optional]<br />
+annotation2 [optional]<br />
+...</p>
+<p>Note: for type 2, even though input SE will override F and NCASE and NCONTROL, you still need to add these two columns otherwise the program will raise an error. If you do not have the real value of F and N, you can add some pseudo values since they will not be used</p>
+<h2 id="caviar">CAVIAR</h2>
+<p>to be added</p>
+<h2 id="caviarbf">CAVIARBF</h2>
+<p>to be added</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../file_split/" class="btn btn-neutral float-right" title="2. File splitting">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../file_split/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>

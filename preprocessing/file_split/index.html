@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>2. File splitting - Fine-mapping Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "2. File splitting";
+    var mkdocs_page_input_path = "preprocessing/file_split.md";
+    var mkdocs_page_url = "/preprocessing/file_split/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Fine-mapping Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Preprocessing</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../file_format/">1. File formatting</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">2. File splitting</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#file-splitting">File splitting</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#approximately-independent-ld-block">Approximately independent LD block</a></li>
+        
+            <li><a class="toctree-l4" href="#other-methods">Other methods</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../ld_matrix_generation/">3. LD matrix generation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../functional_annotation_generation/">4. Functional annotation generation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../software_running/">Software Running</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../../reference/">Reference</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Fine-mapping Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Preprocessing &raquo;</li>
+        
+      
+    
+    <li>2. File splitting</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="file-splitting">File splitting</h1>
+<p>The idea of file splitting is to split the whole genome into loci. There are several ways to split the genome, and here the systematic way is to use the <a href="https://bitbucket.org/nygcresearch/ldetect-data">approximately independent LD block</a>.  </p>
+<h2 id="approximately-independent-ld-block">Approximately independent LD block</h2>
+<p>1) Read the range of each LD block from the approximately independent LD block file<br />
+2) Use tabix to extract the SNPs from the GWAS file according to the LD block range<br />
+3) Filter loci by Pvalue/Zscore since there are ~1500 LD blocks  </p>
+<h3 id="example-code">Example code</h3>
+<p>Note: This should not be used directly since it applies to specific files</p>
+<pre><code>bgzip gwas_summary_temp_sorted
+tabix -s 1 -b 2 -e 2 -S 1 gwas_summary_temp_sorted.gz
+cat fourier_ls-all.bed | while read line
+do
+    array=(${line})
+    chrnum=${array[0]#*chr}
+    chrnum=${chrnum// /}
+    start=${array[1]// /}
+    end=${array[2]// /}
+    if [ "${start}" != "start" ]; then
+    tabix gwas_summary_temp_sorted.gz ${chrnum}:${start}-${end} &gt; output.${chrnum}_${start}_${end}
+done
+</code></pre>
+<h2 id="other-methods">Other methods</h2>
+<p>It is not necessary to split the genome into loci by approximately independent LD block. Sometimes people may just select the lead SNP and include SNPs within 500K bp of the lead SNP on both sides. If you have already define the loci somehow, it's OK to just skip this step. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../ld_matrix_generation/" class="btn btn-neutral float-right" title="3. LD matrix generation">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../file_format/" class="btn btn-neutral" title="1. File formatting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../file_format/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../ld_matrix_generation/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/require.js"></script>
+      <script src="../../search/search.js"></script>
+
+</body>
+</html>
