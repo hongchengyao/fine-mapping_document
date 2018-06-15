@@ -209,9 +209,9 @@ Note: Snps in the locus file must be in the same order as in the LD matrix file 
 <hr />
 <h3 id="input-requirement_1">Input requirement</h3>
 <ul>
-<li>Only one file containing Zscore and functional annotation</li>
+<li>Only one file containing both Zscore and functional annotation</li>
 </ul>
-<p>fgwas does not require a LD matrix file, but it require the Zscore and the annotations to be included into a single file. And all loci should be merged into one file and identified by a SEGNUMBER column.</p>
+<p>fgwas does <strong>NOT</strong> require a LD matrix file, but it require the Zscore and the annotations to be incorporated into <strong>ONE</strong> file. And all loci should be merged into <strong>ONE</strong> file and identified by a SEGNUMBER column.</p>
 <p>In addition, it has different input requirement for quantitative trait and case-control trait  </p>
 <h3 id="quantitative-trait">Quantitative trait</h3>
 <p>The columns have no enforced order, but are identified from the header  </p>
@@ -463,8 +463,8 @@ Note: Snps in the locus file must be in the same order as in the LD matrix file 
 </tr>
 <tr>
 <td>SE</td>
-<td>standard error</td>
 <td><strong>required</strong></td>
+<td>standard error</td>
 </tr>
 <tr>
 <td>SEGNUMBER</td>

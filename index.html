@@ -134,11 +134,22 @@
 <h2 id="general-process-of-gwas-fine-mapping">General process of GWAS fine-mapping</h2>
 <h3 id="data-preprocessing">Data preprocessing</h3>
 <p>Usually this step is complex and time consuming, and this tutorial will <strong>focus on this step</strong>  </p>
+<h4 id="paintor">PAINTOR</h4>
 <ul>
 <li>File formatting  </li>
 <li>File splitting  </li>
 <li>LD matrix generation  </li>
 <li>Functional annotation matrix generation  </li>
+</ul>
+<h4 id="fgwas">fgwas</h4>
+<ul>
+<li>File formatting</li>
+<li>File splitting<ul>
+<li>The AnnotateLocus.py of PAINTOR is applied to SNPs from the same chromosome, so you either split the GWAS file into chromosomes or split it into loci in order to use AnnotateLocus.py to generate functional annotation matrix</li>
+<li>Although fgwas does not require LD matrix file, it's still necessary to define loci and assign SEGNUMBER to each locus</li>
+</ul>
+</li>
+<li>Functional annotation matrix generation</li>
 </ul>
 <h3 id="software-running">Software running</h3>
 <p>After the preprocessing, running fine-mapping software is usually straightforward</p>
@@ -196,5 +207,5 @@
 
 <!--
 MkDocs version : 0.17.4
-Build Date UTC : 2018-06-12 12:23:04
+Build Date UTC : 2018-06-15 13:42:03
 -->
