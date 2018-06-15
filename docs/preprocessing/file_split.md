@@ -4,7 +4,7 @@ The idea of file splitting is to split the whole genome into loci. There are sev
 
 ## Approximately independent LD block
 
-1. Read the range of each LD block from the approximately independent LD block file
+1. Read the range of each LD block from the approximately independent LD block file with **matched population**
 2. Use tabix to extract the SNPs from the GWAS file according to the LD block range
 3. Filter loci by Pvalue/Zscore since there are **thousands** of LD blocks  
 

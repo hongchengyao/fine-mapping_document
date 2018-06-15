@@ -15,6 +15,12 @@ As abovementioned, after preprocessing, running fine-mapping software is usually
 
 ## [fgwas](https://github.com/joepickrell/fgwas/blob/master/man/fgwas_manual.pdf)  
 ---
+
+!!! Note
+
+    fgwas does NOT allow SNPs to have the same position and it will raise an error. Make sure SNPs have unique position before using fgwas
+
+
 ### Example code
 
 	fgwas -i input_file
