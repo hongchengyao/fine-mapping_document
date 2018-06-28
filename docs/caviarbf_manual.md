@@ -7,7 +7,7 @@ The R version depends on `Rcpp`, `RcppEigen` and `glmnet`, remember to install t
 ### Software Detail 
 #### Usage
 
-caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", hyperParamSelection = "cv", nFold = 5, K = 10, rThreshold = 0.2, pvalueThreshold = 0.05, lambda = c(2^seq(from = -15, by = 2, to = 5), 100, 1000, 10000, 1e+05, 1e+06), alpha = c(0, 0.2, 0.3, 0.5, 0.7, 0.8, 1), annotationIndices = -1, annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F, overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, useParallel = F, ncores = 1, verbose = F)
+`caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", hyperParamSelection = "cv", nFold = 5, K = 10, rThreshold = 0.2, pvalueThreshold = 0.05, lambda = c(2^seq(from = -15, by = 2, to = 5), 100, 1000, 10000, 1e+05, 1e+06), alpha = c(0, 0.2, 0.3, 0.5, 0.7, 0.8, 1), annotationIndices = -1, annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F, overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, useParallel = F, ncores = 1, verbose = F)`
 
 #### Argument
 
