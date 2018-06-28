@@ -7,7 +7,7 @@ The R version depends on `Rcpp`, `RcppEigen` and `glmnet`, remember to install t
 ### Software Detail 
 #### Usage
 
-    caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", hyperParamSelection = "cv", nFold = 5, K = 10, rThreshold = 0.2, pvalueThreshold = 0.05, lambda = c(2^seq(from = -15, by = 2, to = 5), 100, 1000, 10000, 1e+05, 1e+06), alpha = c(0, 0.2, 0.3, 0.5, 0.7, 0.8, 1), annotationIndices = -1, annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F, overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, useParallel = F, ncores = 1, verbose = F)
+caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", hyperParamSelection = "cv", nFold = 5, K = 10, rThreshold = 0.2, pvalueThreshold = 0.05, lambda = c(2^seq(from = -15, by = 2, to = 5), 100, 1000, 10000, 1e+05, 1e+06), alpha = c(0, 0.2, 0.3, 0.5, 0.7, 0.8, 1), annotationIndices = -1, annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F, overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, useParallel = F, ncores = 1, verbose = F)
 
 #### Argument
 
@@ -76,10 +76,18 @@ The R version depends on `Rcpp`, `RcppEigen` and `glmnet`, remember to install t
     <outputPrefix>.marginal
     saves the indices of all variants following the order in the list file and the their PIPs sorted in a descring order.
     
-    <outputPrefix>.marginalz includes the extra region index, the
-         variant ID and the z score.  <outputPrefix>.loglik stores the
-         relative log likelihood.  <outputPrefix>.gamma stores the
-         estimated annotation effect size and the effect size of
-         standardized annotation.  <outputPrefix>.log stores the running
-         log.  <outputPrefix>.time saves the running time.
+    <outputPrefix>.marginalz
+    includes the extra region index, the variant ID and the z score.
+    
+    <outputPrefix>.loglik
+    stores the relative log likelihood.
+    
+    <outputPrefix>.gamma
+    stores the estimated annotation effect size and the effect size of standardized annotation.
+    
+    <outputPrefix>.log
+    stores the running log.
+    
+    <outputPrefix>.time
+    saves the running time.
 
