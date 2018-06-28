@@ -140,59 +140,56 @@
 <h3 id="dependencies">Dependencies</h3>
 <p>The R version depends on <code>Rcpp</code>, <code>RcppEigen</code> and <code>glmnet</code>, remember to install these package before installing caviarbf </p>
 <h3 id="software-detail">Software Detail</h3>
+<p>Following information are copied from caviarbf R package help directly</p>
 <h4 id="usage">Usage</h4>
-<p><code>caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", hyperParamSelection = "cv", nFold = 5, K = 10, rThreshold = 0.2, pvalueThreshold = 0.05, lambda = c(2^seq(from = -15, by = 2, to = 5), 100, 1000, 10000, 1e+05, 1e+06), alpha = c(0, 0.2, 0.3, 0.5, 0.7, 0.8, 1), annotationIndices = -1, annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F, overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, useParallel = F, ncores = 1, verbose = F)</code></p>
-<h4 id="argument">Argument</h4>
-<p><code>lociListFile: A file listing all the z score files.</code></p>
-<p><code>maxCausal: The assumed maximal number of causal variants in each locus</code></p>
-<p><code>nSample: The number of individuals used to calculate summary statistics</code></p>
-<p><code>priorType01: 0 to specify sigmaa. An experimental 1 is used to specify the proportion of the phenotype variance explained (pve)</code></p>
-<p><code>priorValue: If priorType01 is 0, it specifies the value of sigmaa. Otherwise, it is the pve value. For sigmaa, a vector of values can be used and the final Bayes factors are averaged. For GWAS fine mapping, c(0.1, 0.2, 0.4) might be a good option. For eQTL, c(0.1, 0.2, 0.4, 0.8, 1.6) might be a good option to accout for large eQTL effects.</code></p>
-<p><code>exact: Whether to calculate the exact Bayes factors. This is only valid for quantitative traits. For binary traits, only approximated Bayes factors are available</code></p>
-<p><code>eps: The small value to add to the correlation matrix. This is useful when the LD matrix is from a reference panel</code></p>
-<p><code>useIdentityMatrix: If true, use the identity matrix as the LD matrix. This improves the computing speed when only considering one causal variant for each locus</code></p>
-<p><code>BFFileListFile: Specify the files of precomputed Bayes factors corresponding to each locus in the lociListFile. If NA, the Bayes factors will be calculated first. Bayes factors can precomputed for each locus using the C++ program This has the advantage of running in parallel, and can saved for later fine mapping.</code></p>
-<p><code>priorProb: The initial probability of each variant being causal. If it is 0, the initial probability will be the number of loci divided by the number of all variants</code></p>
-<p><code>fittingMethod: Specify different penalization models: glmnetLASSOMin for L1 penalization, glmnetRidgeMin for L2 penalization, glmnetENETMin for elastic net penalization. This is only used when hyperParamSelection is "cv".</code></p>
-<p><code>hyperParamSelection: Method to select hyperparameter lambda and alpha. "cv" for loci based cross validation to select lambda and alpha, "aic", "bic", "bic2" uses AIC, BIC models. For the BIC model, "bic2" use the number of SNPs as the number of data points, "bic" uses the number of individuals as the number of data points, but they often show similar results. "topK" produces the top significant and relative independent annotations. No penalization is used in the fitting. As a by-product, it also outputs the pvalues for each individual annotation when considered separately</code></p>
-<p><code>nFold: The fold of cross validation, only used when hyperParamSelection is "cv". If the number of loci is less than then nFold, the number of loci is used</code></p>
-<p><code>K: Specify the top K annotations to select, used for "topK"</code></p>
-<p><code>rThreshold: Specify the upper bound of the correlation among top annotations, used for "topK"</code></p>
-<p><code>pvalueThreshold: Specify the p value threshold for top annotations, used for "topK"</code></p>
-<p><code>lambda: The lambda values for parameter selection. If lambda is 0, then no penalization is used in the fitting. This can be used for statistical testing, e.g., comparing two nested annotation models.</code></p>
-<p><code>alpha: The alpha values for parameter selection, only used when the fitting method is glmnetENETMin</code></p>
-<p><code>annotationIndices: A vector to specify annotations. If it is -1, use all annotations, 0 for only the intercept, otherwise it specifies the corresponding columns of annotations. Default uses all annotations.</code></p>
-<p><code>annotationSuffix: The annotation suffix, default ".annotations"</code></p>
-<p><code>LDSuffix: The correlation file suffix, default ".LD"</code></p>
-<p><code>outputPrefix: The prefix of the output files</code></p>
-<p><code>keepBF: Whether to keep produced Bayes factor files</code></p>
-<p><code>overwriteExistingResults: Whether to overwrite existing output files</code></p>
-<p><code>maxIter: The maximal iteration in the EM method</code></p>
-<p><code>deltaLik: The minimum improvement of log likelihood to continue the EM iteration</code></p>
-<p><code>useParallel: Whether to use library parallel to use multiple cores This can increase the speed of calculate PIPs in the EM iteration</code></p>
-<p><code>ncores: Number of cores to use in parallel when useParallel is T</code></p>
-<p><code>verbose: If true, more information are printed</code></p>
-<h4 id="value">value</h4>
-<pre><code>The results are saved in several files.
-
-&lt;outputPrefix&gt;.marginal
-saves the indices of all variants following the order in the list file and the their PIPs sorted in a descring order.
-
-&lt;outputPrefix&gt;.marginalz
-includes the extra region index, the variant ID and the z score.
-
-&lt;outputPrefix&gt;.loglik
-stores the relative log likelihood.
-
-&lt;outputPrefix&gt;.gamma
-stores the estimated annotation effect size and the effect size of standardized annotation.
-
-&lt;outputPrefix&gt;.log
-stores the running log.
-
-&lt;outputPrefix&gt;.time
-saves the running time.
+<pre><code>caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, 
+priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, 
+BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", 
+hyperParamSelection = "cv", nFold = 5, K = 10, rThreshold = 0.2, 
+pvalueThreshold = 0.05, lambda = c(2^seq(from = -15, by = 2, to = 5), 100, 1000, 10000, 1e+05, 1e+06), 
+alpha = c(0, 0.2, 0.3, 0.5, 0.7, 0.8, 1), annotationIndices = -1, 
+annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F, 
+overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, 
+useParallel = F, ncores = 1, verbose = F)
 </code></pre>
+<h4 id="argument">Argument</h4>
+<p><code>lociListFile</code> A file listing all the z score files.</p>
+<p><code>maxCausal</code> The assumed maximal number of causal variants in each locus</p>
+<p><code>nSample</code> The number of individuals used to calculate summary statistics</p>
+<p><code>priorType01</code> 0 to specify sigmaa. An experimental 1 is used to specify the proportion of the phenotype variance explained (pve)</p>
+<p><code>priorValue</code> If priorType01 is 0, it specifies the value of sigmaa. Otherwise, it is the pve value. For sigmaa, a vector of values can be used and the final Bayes factors are averaged. For GWAS fine mapping, c(0.1, 0.2, 0.4) might be a good option. For eQTL, c(0.1, 0.2, 0.4, 0.8, 1.6) might be a good option to accout for large eQTL effects.</p>
+<p><code>exact</code> Whether to calculate the exact Bayes factors. This is only valid for quantitative traits. For binary traits, only approximated Bayes factors are available</p>
+<p><code>eps</code> The small value to add to the correlation matrix. This is useful when the LD matrix is from a reference panel</p>
+<p><code>useIdentityMatrix</code> If true, use the identity matrix as the LD matrix. This improves the computing speed when only considering one causal variant for each locus</p>
+<p><code>BFFileListFile</code> Specify the files of precomputed Bayes factors corresponding to each locus in the lociListFile. If NA, the Bayes factors will be calculated first. Bayes factors can precomputed for each locus using the C++ program This has the advantage of running in parallel, and can saved for later fine mapping.</p>
+<p><code>priorProb</code> The initial probability of each variant being causal. If it is 0, the initial probability will be the number of loci divided by the number of all variants</p>
+<p><code>fittingMethod</code> Specify different penalization models: glmnetLASSOMin for L1 penalization, glmnetRidgeMin for L2 penalization, glmnetENETMin for elastic net penalization. This is only used when hyperParamSelection is "cv".</p>
+<p><code>hyperParamSelection</code> Method to select hyperparameter lambda and alpha. "cv" for loci based cross validation to select lambda and alpha, "aic", "bic", "bic2" uses AIC, BIC models. For the BIC model, "bic2" use the number of SNPs as the number of data points, "bic" uses the number of individuals as the number of data points, but they often show similar results. "topK" produces the top significant and relative independent annotations. No penalization is used in the fitting. As a by-product, it also outputs the pvalues for each individual annotation when considered separately`</p>
+<p><code>nFold</code> The fold of cross validation, only used when hyperParamSelection is "cv". If the number of loci is less than then nFold, the number of loci is used</p>
+<p><code>K</code> Specify the top K annotations to select, used for "topK"</p>
+<p><code>rThreshold</code> Specify the upper bound of the correlation among top annotations, used for "topK"</p>
+<p><code>pvalueThreshold</code> Specify the p value threshold for top annotations, used for "topK"</p>
+<p><code>lambda</code> The lambda values for parameter selection. If lambda is 0, then no penalization is used in the fitting. This can be used for statistical testing, e.g., comparing two nested annotation models.</p>
+<p><code>alpha</code> The alpha values for parameter selection, only used when the fitting method is glmnetENETMin`</p>
+<p><code>annotationIndices</code> A vector to specify annotations. If it is -1, use all annotations, 0 for only the intercept, otherwise it specifies the corresponding columns of annotations. Default uses all annotations.</p>
+<p><code>annotationSuffix</code> The annotation suffix, default ".annotations"</p>
+<p><code>LDSuffix</code> The correlation file suffix, default ".LD"</p>
+<p><code>outputPrefix</code> The prefix of the output files</p>
+<p><code>keepBF</code> Whether to keep produced Bayes factor files</p>
+<p><code>overwriteExistingResults</code> Whether to overwrite existing output files</p>
+<p><code>maxIter</code> The maximal iteration in the EM method</p>
+<p><code>deltaLik</code> The minimum improvement of log likelihood to continue the EM iteration</p>
+<p><code>useParallel</code> Whether to use library parallel to use multiple cores This can increase the speed of calculate PIPs in the EM iteration</p>
+<p><code>ncores</code> Number of cores to use in parallel when useParallel is T</p>
+<p><code>verbose</code> If true, more information are printed</p>
+<h4 id="value">value</h4>
+<p>The results are saved in several files.  </p>
+<p><code>&lt;outputPrefix&gt;.marginal</code> saves the indices of all variants following the order in the list file and the their PIPs sorted in a descring order.</p>
+<p><code>&lt;outputPrefix&gt;.marginalz</code> includes the extra region index, the variant ID and the z score.</p>
+<p><code>&lt;outputPrefix&gt;.loglik</code> stores the relative log likelihood.</p>
+<p><code>&lt;outputPrefix&gt;.gamma</code> stores the estimated annotation effect size and the effect size of standardized annotation.</p>
+<p><code>&lt;outputPrefix&gt;.log</code> stores the running log.</p>
+<p><code>&lt;outputPrefix&gt;.time</code> saves the running time.</p>
               
             </div>
           </div>
