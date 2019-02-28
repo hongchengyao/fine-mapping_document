@@ -1,6 +1,6 @@
 # caviarbf
 ## R version
-Since the documentation of caviarbf is not clear enough and sometimes mixes the documentation of the C++ version and the R version this documentation serves as a supplement
+Since the documentation of caviarbf is not clear enough and sometimes mixes with the documentation of the C++ version and the R version this documentation serves as a supplement
 ### Dependencies
 The R version depends on `Rcpp`, `RcppEigen` and `glmnet`, remember to install these package before installing caviarbf 
 
@@ -8,7 +8,7 @@ The R version depends on `Rcpp`, `RcppEigen` and `glmnet`, remember to install t
     
     By 2018-06-28, there is an error when using the lastest version of `glmnet` (2.0-16). According to the [author's own explanation](https://bitbucket.org/Wenan/caviarbf/issues/2/error-running-test_packager), "This is a problem with the latest glmnet update. So far glmnet 2.0-10 seems to be working. I will try to see whether I can make it work with the latest glmnet (2.0-13)
     
-    When testing with `glmnet` (2.0-10), there is no error"
+    When testing with `glmnet` (2.0-10), there is no error
 
 ### Software Detail 
 Following information are copied from caviarbf R package help directly

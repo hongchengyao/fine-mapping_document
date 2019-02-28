@@ -120,7 +120,76 @@ to be added
 
 ## CAVIARBF
 ---
+### C++ Version
+#### Input requirement
+- Marginal test statistics file (Z-score file)
+- Correlation matrix file (LD matrix file)
+
+#### Example
+##### Z-score file
+This file should NOT contain header
+
+    rs11922846 0.41199
+    rs2587938 -0.631405
+    rs1351949 0.269231
+    rs2587940 -0.786003
+    rs1825507 -0.514003
+
+##### LD matrix file
+This file should NOT contain header
+
+    1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+    3.4753e-01 1.0000e+00 3.4753e-01 9.8494e-01 -2.3178e-01
+    1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+    3.4492e-01 9.8494e-01 3.4492e-01 1.0000e+00 -2.3003e-01
+    4.3334e-01 -2.3178e-01 4.3334e-01 -2.3003e-01 1.0000e+00
+
 ###  R Version
+R version can incorporate functional annotations into fine-mapping process
+#### Input requirement
+- Marginal test statistics file (Z-score file)
+- Correlation matrix file (LD matrix file)
+- Annotation file
 
+Naming of these three files are as follows:
 
+- <z-score-file\>
+- <z-score-file\>.LD 
+- <z-score-file\>.annotations
+
+#### Example
+
+##### Naming
+gwas_summary_3_4750808.processed
+gwas_summary_3_4750808.processed.LD
+gwas_summary_3_4750808.processed.annotations
+
+##### Z-score file
+This file should NOT contain header
+
+    rs11922846 0.41199
+    rs2587938 -0.631405
+    rs1351949 0.269231
+    rs2587940 -0.786003
+    rs1825507 -0.514003
+
+##### LD matrix file
+This file should NOT contain header
+
+    1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+    3.4753e-01 1.0000e+00 3.4753e-01 9.8494e-01 -2.3178e-01
+    1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+    3.4492e-01 9.8494e-01 3.4492e-01 1.0000e+00 -2.3003e-01
+    4.3334e-01 -2.3178e-01 4.3334e-01 -2.3003e-01 1.0000e+00
+
+##### Annotation file
+This file should NOT contain header, for CAVIARBF R version, annotations could be binary or continuous value.
+
+This example has 7 annotations
+
+    0 0 0 0 0 1 0
+    0 0 0 0 0 1 0
+    0 0 0 0 0 1 0
+    0 1 0 0 0 1 0
+    0 0 0 0 0 0 0
 

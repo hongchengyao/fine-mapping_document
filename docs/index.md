@@ -4,8 +4,7 @@
 ## General process of GWAS fine-mapping  
 
 ### Data preprocessing 
-Usually this step is complex and time consuming, and this tutorial will **focus on this step**  
-
+Usually this step is complex and time consuming, and this tutorial will **focus on this step**
 #### PAINTOR
 - File formatting  
 - File splitting  
