@@ -4,7 +4,7 @@ The C++ version only works for **SINGLE** locus finemapping **WITHOUT** function
 ---
 
 ## Running process
-1. Prepare all the required files as in [Input file format](caviarbf_c++.md##input-file-format).
+1. Prepare all the required files as in [Input file format](caviarbf_c++.md#input-file-format).
 2. Run executable program `caviarbf`, and generate the Bayes factor file
 3. Use the Bayes factor file from former step and other files (if necessary), run executable program `model_search`, generate the final output files
 
@@ -17,11 +17,11 @@ The C++ version only works for **SINGLE** locus finemapping **WITHOUT** function
     - If `-i` is used, i.e., use identity matrix for the correlation matrix, then there is no need to use `-r` to specify the input file for correlation matrix
     - If `-i` is not used, `-r` is **required**
 - `-t` (**required**) prior type for variant effect size
-    - 0: specify sigmaa
+    - 0: specify sigmaa, sigmaa relates to the variance of effect size
     - 1: specify the proportion of variance explained (pve)
     - For -t option, 0 (setting sigmaa) is fully tested. 1 is in an experimental stage. When using sigmaa, 0.1 seems to be a generally good value for -a for GWAS. Other values can be tried include 0.2, 0.4 as recommended by BIMBAM or use the robust multiple value version 0.1,0.2,0.4. For eQTL analysis, a multiple value option 0.1,0.2,0.4,0.8,1.6 is reasonable.
 - `-a` (**required**) the prior values associated with the prior type
-    - Option `-a` now can support multple values, for example, -a 0.1,0.2,0.4 to allow multple values to be used and the fnal Bayes factor is an average among diferent values. This will be more robust when we are uncertain about the efect size.
+    - Option `-a` now can support multiple values, for example, -a 0.1,0.2,0.4 to allow multiple values to be used and the final Bayes factor is an average among different values. This will be more robust when we are uncertain about the effect size.
 - `-n` (**required**) the total number of samples in the data
 - `-c` (**required**) the maximal number of causal variants in the model
     - When running on many SNPs, be careful not to set the `-c` option too large because it may take too much time and also space to store the output. You can start with 1 or 2 and increase it by 1 in each trial. If two settings show similar results, then there is no need to increase it further.
@@ -50,7 +50,8 @@ The C++ version only works for **SINGLE** locus finemapping **WITHOUT** function
 #### Example
 ##### Marginal test statistics file
 Note: This file should NOT contain header
-The third column is optional, which specifies the variance of each variant. In this case, we assume the effect size is not related to the allele frequency of the variant. The result will be similar to BIMBAM. Without the third column of variance of each variant, we assume that the effect size is larger when the minor allele frequency is smaller.
+
+A text file with 2 or 3 columns separated by spaces. The third column is optional, which specifies the variance of each variant. In this case, we assume the effect size is not related to the allele frequency of the variant. The result will be similar to BIMBAM. Without the third column of variance of each variant, we assume that the effect size is larger when the minor allele frequency is smaller.
 
     rs11922846 0.41199
     rs2587938 -0.631405
@@ -137,8 +138,9 @@ The first line is a comment. The second line is the header. The first column is 
     - This file has a .statistics suffix, and contains some statistics information. The first is the ratio between the likelihood of the data averaging over all models to the likelihood of the data under the global null model: no variant is causal. The second is the probability of at least 1 causal variant in the region. The third is the Bayes factor of the region (all alternative models vs. the global null model).
 - ρ-confidence level file (when specify `-s`)
     - This file has a .stepwise suffix. It has the same format as the PIP file. Each row shows the ρ-confidence level when including the current variant and all variants above this row. To generate this file you need to specify the `-s` option
-- Other experimental output files
+- Other experimental output files (when specify `-e` or `-x`)
     - .exhaustive file outputs the best ρ-confidence level by exhaustive search of models for each model size. Due to the time cost, we only do that until model size 4. This needs the `-e` option to generate it.
     - .exhaustivestepwise file outputs the ρ-confidence level by first applying the exhaustive search up to model size 4 and then switching to a stepwise search. This needs the `-x` option
 
-
+## Explanation of ρ-confidence level file
+TBA
