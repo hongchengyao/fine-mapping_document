@@ -95,6 +95,8 @@
         
             <li><a class="toctree-l3" href="#for-model_search">For model_search</a></li>
         
+            <li><a class="toctree-l3" href="#explanation-of-confidence-level-file">Explanation of ρ-confidence level file</a></li>
+        
         </ul>
     
 
@@ -148,7 +150,7 @@
 <hr />
 <h2 id="running-process">Running process<a class="headerlink" href="#running-process" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Prepare all the required files as in <a href="./##input-file-format">Input file format</a>.</li>
+<li>Prepare all the required files as in <a href="./#input-file-format">Input file format</a>.</li>
 <li>Run executable program <code>caviarbf</code>, and generate the Bayes factor file</li>
 <li>Use the Bayes factor file from former step and other files (if necessary), run executable program <code>model_search</code>, generate the final output files</li>
 </ol>
@@ -163,13 +165,13 @@
 </ul>
 </li>
 <li><code>-t</code> (<strong>required</strong>) prior type for variant effect size<ul>
-<li>0: specify sigmaa</li>
+<li>0: specify sigmaa, sigmaa relates to the variance of effect size</li>
 <li>1: specify the proportion of variance explained (pve)</li>
 <li>For -t option, 0 (setting sigmaa) is fully tested. 1 is in an experimental stage. When using sigmaa, 0.1 seems to be a generally good value for -a for GWAS. Other values can be tried include 0.2, 0.4 as recommended by BIMBAM or use the robust multiple value version 0.1,0.2,0.4. For eQTL analysis, a multiple value option 0.1,0.2,0.4,0.8,1.6 is reasonable.</li>
 </ul>
 </li>
 <li><code>-a</code> (<strong>required</strong>) the prior values associated with the prior type<ul>
-<li>Option <code>-a</code> now can support multple values, for example, -a 0.1,0.2,0.4 to allow multple values to be used and the fnal Bayes factor is an average among diferent values. This will be more robust when we are uncertain about the efect size.</li>
+<li>Option <code>-a</code> now can support multiple values, for example, -a 0.1,0.2,0.4 to allow multiple values to be used and the final Bayes factor is an average among different values. This will be more robust when we are uncertain about the effect size.</li>
 </ul>
 </li>
 <li><code>-n</code> (<strong>required</strong>) the total number of samples in the data</li>
@@ -209,8 +211,8 @@
 </div>
 <h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
 <h5 id="marginal-test-statistics-file">Marginal test statistics file<a class="headerlink" href="#marginal-test-statistics-file" title="Permanent link">&para;</a></h5>
-<p>Note: This file should NOT contain header
-The third column is optional, which specifies the variance of each variant. In this case, we assume the effect size is not related to the allele frequency of the variant. The result will be similar to BIMBAM. Without the third column of variance of each variant, we assume that the effect size is larger when the minor allele frequency is smaller.</p>
+<p>Note: This file should NOT contain header</p>
+<p>A text file with 2 or 3 columns separated by spaces. The third column is optional, which specifies the variance of each variant. In this case, we assume the effect size is not related to the allele frequency of the variant. The result will be similar to BIMBAM. Without the third column of variance of each variant, we assume that the effect size is larger when the minor allele frequency is smaller.</p>
 <pre><code>rs11922846 0.41199
 rs2587938 -0.631405
 rs1351949 0.269231
@@ -305,12 +307,14 @@ bf      se  snp1    snp2    snp3    snp4    snp5
 <li>This file has a .stepwise suffix. It has the same format as the PIP file. Each row shows the ρ-confidence level when including the current variant and all variants above this row. To generate this file you need to specify the <code>-s</code> option</li>
 </ul>
 </li>
-<li>Other experimental output files<ul>
+<li>Other experimental output files (when specify <code>-e</code> or <code>-x</code>)<ul>
 <li>.exhaustive file outputs the best ρ-confidence level by exhaustive search of models for each model size. Due to the time cost, we only do that until model size 4. This needs the <code>-e</code> option to generate it.</li>
 <li>.exhaustivestepwise file outputs the ρ-confidence level by first applying the exhaustive search up to model size 4 and then switching to a stepwise search. This needs the <code>-x</code> option</li>
 </ul>
 </li>
 </ul>
+<h2 id="explanation-of-confidence-level-file">Explanation of ρ-confidence level file<a class="headerlink" href="#explanation-of-confidence-level-file" title="Permanent link">&para;</a></h2>
+<p>TBA</p>
               
             </div>
           </div>
