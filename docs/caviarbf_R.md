@@ -1,20 +1,22 @@
-# caviarbf
-## R version
+# CAVIARBF R version
 Since the documentation of caviarbf is not clear enough and sometimes mixes with the documentation of the C++ version and the R version this documentation serves as a supplement
-### Dependencies
+
+---
+
+## Dependencies
 The R version depends on `Rcpp`, `RcppEigen` and `glmnet`, remember to install these package before installing caviarbf 
 
 !!! Warning
     
-    By 2018-06-28, there is an error when using the lastest version of `glmnet` (2.0-16). According to the [author's own explanation](https://bitbucket.org/Wenan/caviarbf/issues/2/error-running-test_packager), "This is a problem with the latest glmnet update. So far glmnet 2.0-10 seems to be working. I will try to see whether I can make it work with the latest glmnet (2.0-13)
+    By 2018-06-28, there is an error when using the lastest version of `glmnet` (2.0-16). According to the [author's own explanation](https://bitbucket.org/Wenan/caviarbf/issues/2/error-running-test_packager), "This is a problem with the latest glmnet update. So far glmnet 2.0-10 seems to be working. I will try to see whether I can make it work with the latest glmnet (2.0-13)"
     
     When testing with `glmnet` (2.0-10), there is no error
 
-### Software Detail 
+## Software Detail 
 Following information are copied from caviarbf R package help directly
 
 Please type `?caviarbfFineMapping` in R for the usage of the interface.
-#### Usage
+### Usage
 
     caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, 
     priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, 
@@ -26,7 +28,7 @@ Please type `?caviarbfFineMapping` in R for the usage of the interface.
     overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, 
     useParallel = F, ncores = 1, verbose = F)
 
-#### Argument
+### Argument
 
 - `lociListFile` A file listing all the z score files.
 
@@ -98,7 +100,7 @@ If `hyperParamSelection = "topK"`
 
 - `verbose` If true, more information are printed
  
-#### value
+### value
  
 The results are saved in several files.  
     
@@ -114,7 +116,7 @@ The results are saved in several files.
     
 `<outputPrefix>.time` saves the running time.
 
-#### Note
+### Note
 `"topK"` First, annotations are ranked by their individual increase in likelihood compared to the model without any annotations. Then the top k annotations are used
 
 

@@ -7,7 +7,8 @@ pages:
     - '3. LD matrix generation': 'preprocessing/ld_matrix_generation.md'
     - '4. Functional annotation generation': 'preprocessing/functional_annotation_generation.md'
   - Software Running: 'software_running.md'
-  - Caviarbf Manual: 'caviarbf_manual.md'
+  - CAVIARBF C++ version: 'caviarbf_c++.md'
+  - CAVIARBF R version: 'caviarbf_R.md'
   - Reference: 'reference.md'
 theme: readthedocs
 repo_name: https://github.com/hongchengyao/fine-mapping_document/tree/master
@@ -15,5 +16,4 @@ copyright: Copyright © 2018 Hongcheng Yao
 markdown_extensions:
     - toc:
         permalink: True
-markdown_extensions:
-  - admonition
+    - admonition
