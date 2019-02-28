@@ -502,7 +502,73 @@ Note: Snps in the locus file must be in the same order as in the LD matrix file 
 <p>to be added</p>
 <h2 id="caviarbf">CAVIARBF</h2>
 <hr />
+<h3 id="c-version">C++ Version</h3>
+<h4 id="input-requirement_2">Input requirement</h4>
+<ul>
+<li>Marginal test statistics file (Z-score file)</li>
+<li>Correlation matrix file (LD matrix file)</li>
+</ul>
+<h4 id="example">Example</h4>
+<h5 id="z-score-file">Z-score file</h5>
+<p>This file should NOT contain header</p>
+<pre><code>rs11922846 0.41199
+rs2587938 -0.631405
+rs1351949 0.269231
+rs2587940 -0.786003
+rs1825507 -0.514003
+</code></pre>
+<h5 id="ld-matrix-file">LD matrix file</h5>
+<p>This file should NOT contain header</p>
+<pre><code>1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+3.4753e-01 1.0000e+00 3.4753e-01 9.8494e-01 -2.3178e-01
+1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+3.4492e-01 9.8494e-01 3.4492e-01 1.0000e+00 -2.3003e-01
+4.3334e-01 -2.3178e-01 4.3334e-01 -2.3003e-01 1.0000e+00
+</code></pre>
 <h3 id="r-version">R Version</h3>
+<p>R version can incorporate functional annotations into fine-mapping process</p>
+<h4 id="input-requirement_3">Input requirement</h4>
+<ul>
+<li>Marginal test statistics file (Z-score file)</li>
+<li>Correlation matrix file (LD matrix file)</li>
+<li>Annotation file</li>
+</ul>
+<p>Naming of these three files are as follows:</p>
+<ul>
+<li>&lt;z-score-file></li>
+<li>&lt;z-score-file>.LD </li>
+<li>&lt;z-score-file>.annotations</li>
+</ul>
+<h4 id="example_1">Example</h4>
+<h5 id="naming">Naming</h5>
+<p>gwas_summary_3_4750808.processed
+gwas_summary_3_4750808.processed.LD
+gwas_summary_3_4750808.processed.annotations</p>
+<h5 id="z-score-file_1">Z-score file</h5>
+<p>This file should NOT contain header</p>
+<pre><code>rs11922846 0.41199
+rs2587938 -0.631405
+rs1351949 0.269231
+rs2587940 -0.786003
+rs1825507 -0.514003
+</code></pre>
+<h5 id="ld-matrix-file_1">LD matrix file</h5>
+<p>This file should NOT contain header</p>
+<pre><code>1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+3.4753e-01 1.0000e+00 3.4753e-01 9.8494e-01 -2.3178e-01
+1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+3.4492e-01 9.8494e-01 3.4492e-01 1.0000e+00 -2.3003e-01
+4.3334e-01 -2.3178e-01 4.3334e-01 -2.3003e-01 1.0000e+00
+</code></pre>
+<h5 id="annotation-file">Annotation file</h5>
+<p>This file should NOT contain header, for CAVIARBF R version, annotations could be binary or continuous value.</p>
+<p>This example has 7 annotations</p>
+<pre><code>0 0 0 0 0 1 0
+0 0 0 0 0 1 0
+0 0 0 0 0 1 0
+0 1 0 0 0 1 0
+0 0 0 0 0 0 0
+</code></pre>
               
             </div>
           </div>
