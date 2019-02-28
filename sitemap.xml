@@ -31,7 +31,12 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>/caviarbf_manual/</loc>
+     <loc>/caviarbf_c++/</loc>
+     <lastmod>2019-02-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>/caviarbf_R/</loc>
      <lastmod>2019-02-28</lastmod>
      <changefreq>daily</changefreq>
     </url>

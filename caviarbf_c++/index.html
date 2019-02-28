@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>CAVIARBF C++ version - Fine-mapping Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "CAVIARBF C++ version";
+    var mkdocs_page_input_path = "caviarbf_c++.md";
+    var mkdocs_page_url = "/caviarbf_c++/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Fine-mapping Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Data Preprocessing</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../preprocessing/file_format/">1. File formatting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/file_split/">2. File splitting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/ld_matrix_generation/">3. LD matrix generation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/functional_annotation_generation/">4. Functional annotation generation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../software_running/">Software Running</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">CAVIARBF C++ version</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#caviarbf-c-version">CAVIARBF C++ version</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#running-process">Running process</a></li>
+        
+            <li><a class="toctree-l3" href="#for-caviarbf">For caviarbf</a></li>
+        
+            <li><a class="toctree-l3" href="#for-model_search">For model_search</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caviarbf_R/">CAVIARBF R version</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reference/">Reference</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Fine-mapping Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>CAVIARBF C++ version</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="caviarbf-c-version">CAVIARBF C++ version<a class="headerlink" href="#caviarbf-c-version" title="Permanent link">&para;</a></h1>
+<p>The C++ version only works for <strong>SINGLE</strong> locus finemapping <strong>WITHOUT</strong> functional annotations.</p>
+<hr />
+<h2 id="running-process">Running process<a class="headerlink" href="#running-process" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Prepare all the required files as in <a href="./##input-file-format">Input file format</a>.</li>
+<li>Run executable program <code>caviarbf</code>, and generate the Bayes factor file</li>
+<li>Use the Bayes factor file from former step and other files (if necessary), run executable program <code>model_search</code>, generate the final output files</li>
+</ol>
+<h2 id="for-caviarbf">For <code>caviarbf</code><a class="headerlink" href="#for-caviarbf" title="Permanent link">&para;</a></h2>
+<h3 id="argument">Argument<a class="headerlink" href="#argument" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>-z</code> (<strong>required</strong>) input file for marginal test statistics</li>
+<li><code>-i</code> (<em>optional</em>) use the identity matrix for the correlation matrix, useful for c = 1</li>
+<li><code>-r</code> input file for correlation matrix<ul>
+<li>If <code>-i</code> is used, i.e., use identity matrix for the correlation matrix, then there is no need to use <code>-r</code> to specify the input file for correlation matrix</li>
+<li>If <code>-i</code> is not used, <code>-r</code> is <strong>required</strong></li>
+</ul>
+</li>
+<li><code>-t</code> (<strong>required</strong>) prior type for variant effect size<ul>
+<li>0: specify sigmaa</li>
+<li>1: specify the proportion of variance explained (pve)</li>
+<li>For -t option, 0 (setting sigmaa) is fully tested. 1 is in an experimental stage. When using sigmaa, 0.1 seems to be a generally good value for -a for GWAS. Other values can be tried include 0.2, 0.4 as recommended by BIMBAM or use the robust multiple value version 0.1,0.2,0.4. For eQTL analysis, a multiple value option 0.1,0.2,0.4,0.8,1.6 is reasonable.</li>
+</ul>
+</li>
+<li><code>-a</code> (<strong>required</strong>) the prior values associated with the prior type<ul>
+<li>Option <code>-a</code> now can support multple values, for example, -a 0.1,0.2,0.4 to allow multple values to be used and the fnal Bayes factor is an average among diferent values. This will be more robust when we are uncertain about the efect size.</li>
+</ul>
+</li>
+<li><code>-n</code> (<strong>required</strong>) the total number of samples in the data</li>
+<li><code>-c</code> (<strong>required</strong>) the maximal number of causal variants in the model<ul>
+<li>When running on many SNPs, be careful not to set the <code>-c</code> option too large because it may take too much time and also space to store the output. You can start with 1 or 2 and increase it by 1 in each trial. If two settings show similar results, then there is no need to increase it further.</li>
+</ul>
+</li>
+<li><code>-o</code> (<strong>required</strong>) the output file name for Bayes factors</li>
+<li><code>--appr</code> (<em>optional</em>) calculate the approximated Bayes factors instead of the exact<ul>
+<li>For <strong>quanttatve trait</strong>, an <strong>exact</strong> Bayes factor can be calculated instead of an <strong>approximate</strong> Bayes factor. This is critical when the sample size is small or the effect size is large, for example, in expression quantitative trait loci (eQTL) analysis. To use the old approximate Bayes factors, use the option --appr. Use the <strong>approximate</strong> Bayes factor for a <strong>binary trait</strong> because <strong>NO</strong> exact Bayes factor is available.</li>
+</ul>
+</li>
+<li><code>-e</code> (<em>optional</em>) the value added to the diagonal of the correlation matrix. A recommendded value is 0.1 when using estimated correlation, e.g., from the 1000 genomes project. This can improve the performance when the correlaton matrix is an approximaton, such as from a reference panel<ul>
+<li>Default: 0, if using exact Bayes factors</li>
+<li>Default: 1e-3, if using approximated Bayes factors</li>
+</ul>
+</li>
+<li><code>--</code> Ignores the rest of the labeled arguments following this flag</li>
+<li><code>--version</code> Displays version information and exits</li>
+<li><code>-h</code> Displays usage information and exits</li>
+</ul>
+<h3 id="input-file-format">Input file format<a class="headerlink" href="#input-file-format" title="Permanent link">&para;</a></h3>
+<h4 id="input-requirement">Input requirement<a class="headerlink" href="#input-requirement" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Marginal test statistics file (Z-score file, <strong>required</strong>)<ul>
+<li>A text file with 2 or 3 columns separated by spaces</li>
+</ul>
+</li>
+<li>Correlation matrix file (LD matrix file, if use identity matrix for the correlation matrix, this is <strong>NOT</strong> necessary)<ul>
+<li>a matrix of the correlaton among variants</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The coding scheme in the calculation of the correlation (LD) matrix should be consistent with that of the z scores, i.e., the allele coded as 1 in the calculation of z scores needs to be coded as 1 in the calculation of the correlation (LD) matrix and vice versa. Because this is how everything is calculated when we have the full genotype data: everything calculated is based on the same coding scheme. Otherwise the results using summary statistics may be arbitrary.</p>
+</div>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<h5 id="marginal-test-statistics-file">Marginal test statistics file<a class="headerlink" href="#marginal-test-statistics-file" title="Permanent link">&para;</a></h5>
+<p>Note: This file should NOT contain header
+The third column is optional, which specifies the variance of each variant. In this case, we assume the effect size is not related to the allele frequency of the variant. The result will be similar to BIMBAM. Without the third column of variance of each variant, we assume that the effect size is larger when the minor allele frequency is smaller.</p>
+<pre><code>rs11922846 0.41199
+rs2587938 -0.631405
+rs1351949 0.269231
+rs2587940 -0.786003
+rs1825507 -0.514003
+</code></pre>
+<h5 id="correlation-matrix-file">Correlation matrix file<a class="headerlink" href="#correlation-matrix-file" title="Permanent link">&para;</a></h5>
+<p>Note: This file should NOT contain header</p>
+<pre><code>1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+3.4753e-01 1.0000e+00 3.4753e-01 9.8494e-01 -2.3178e-01
+1.0000e+00 3.4753e-01 1.0000e+00 3.4492e-01 4.3334e-01
+3.4492e-01 9.8494e-01 3.4492e-01 1.0000e+00 -2.3003e-01
+4.3334e-01 -2.3178e-01 4.3334e-01 -2.3003e-01 1.0000e+00
+</code></pre>
+<h3 id="output-file-format">Output file format<a class="headerlink" href="#output-file-format" title="Permanent link">&para;</a></h3>
+<p>The output file is a text file with Bayes factors. It has the same format as that from BIMBAM. </p>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<h5 id="bayes-factor-file">Bayes factor file<a class="headerlink" href="#bayes-factor-file" title="Permanent link">&para;</a></h5>
+<p>The first line is a comment. The second line is the header. The first column is the Bayes factor. The rest columns indicate which SNPs/variants are in the model. NA means not in the model.</p>
+<pre><code>## note:bf=log10(Bayes Factor), SNP IDs are from 1 ... m
+bf      se  snp1    snp2    snp3    snp4    snp5
+-0.591455   NA  1   NA  NA  NA  NA
++4.658971   NA  2   NA  NA  NA  NA
+-0.127742   NA  3   NA  NA  NA  NA
++7.052327   NA  4   NA  NA  NA  NA
++1.289039   NA  5   NA  NA  NA  NA
++2.519908   NA  6   NA  NA  NA  NA
++9.619151   NA  1   2   NA  NA  NA
+-0.485480   NA  1   3   NA  NA  NA
++6.794833   NA  1   4   NA  NA  NA
++0.954240   NA  1   5   NA  NA  NA
++2.145068   NA  1   6   NA  NA  NA
++4.577784   NA  2   3   NA  NA  NA
++12.322104  NA  2   4   NA  NA  NA
++6.055098   NA  2   5   NA  NA  NA
++7.274689   NA  2   6   NA  NA  NA
++84.266736  NA  3   4   NA  NA  NA
++1.568898   NA  3   5   NA  NA  NA
++2.617624   NA  3   6   NA  NA  NA
++7.998226   NA  4   5   NA  NA  NA
++9.658610   NA  4   6   NA  NA  NA
++3.923135   NA  5   6   NA  NA  NA
+</code></pre>
+<h2 id="for-model_search">For <code>model_search</code><a class="headerlink" href="#for-model_search" title="Permanent link">&para;</a></h2>
+<h3 id="argument_1">Argument<a class="headerlink" href="#argument_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>-p</code> (either <code>-p</code> or <code>-f</code> is <strong>required</strong>) the prior probability of each SNP being causal, in the range [0, 1). If it is 0, the prior probability will be set to 1 / m, where m is the number of variants in the region</li>
+<li><code>-f</code> (either <code>-p</code> or <code>-f</code> is <strong>required</strong>) the file name specifying the prior probabilities of variants</li>
+<li><code>-i</code> (<strong>required</strong>) input file storing Bayes factors</li>
+<li><code>-m</code> (<strong>required</strong>) the total number of variants in the data</li>
+<li><code>-o</code> (<strong>required</strong>) output file prefix</li>
+<li><code>-s</code> output stepwise result with rho confidence level</li>
+<li><code>-e</code> output exhaustive search result with rho confidence level</li>
+<li><code>-x</code> output result first using exhaustive and then stepwise search with rho confidence level</li>
+<li><code>--</code> Ignores the rest of the labeled arguments following this flag</li>
+<li><code>--version</code> Displays version information and exits</li>
+<li><code>-h</code> Displays usage information and exits</li>
+</ul>
+<h3 id="input-file-format_1">Input file format<a class="headerlink" href="#input-file-format_1" title="Permanent link">&para;</a></h3>
+<h4 id="input-requirement_1">Input requirement<a class="headerlink" href="#input-requirement_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Bayes factor file (<strong>required</strong>)<ul>
+<li>The output file from <code>caviarbf</code>. Since the format is the same as the output from BIMBAM, it can also be used to process BIMBAM output Bayes factors</li>
+</ul>
+</li>
+<li>Prior probability file (<em>optional</em>)<ul>
+<li>This file can be used to specify different priors of being causal for different variants. Each row corresponds to a variant in the region</li>
+<li>If all the priors are the same, we can also use <code>-p</code> to specify the common prior directly</li>
+</ul>
+</li>
+</ul>
+<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h4>
+<h5 id="prior-probability-file">Prior probability file<a class="headerlink" href="#prior-probability-file" title="Permanent link">&para;</a></h5>
+<pre><code>0.02
+0.03
+0.02
+0.05
+0.02
+0.01
+</code></pre>
+<h3 id="output-file-format_1">Output file format<a class="headerlink" href="#output-file-format_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Posterior inclusion probability (PIP) file<ul>
+<li>The file has a .marginal suffix. It has two columns. The first column is the index of each variant in the data. The second is the PIP in a descending order</li>
+</ul>
+</li>
+<li>Statistics file<ul>
+<li>This file has a .statistics suffix, and contains some statistics information. The first is the ratio between the likelihood of the data averaging over all models to the likelihood of the data under the global null model: no variant is causal. The second is the probability of at least 1 causal variant in the region. The third is the Bayes factor of the region (all alternative models vs. the global null model).</li>
+</ul>
+</li>
+<li>ρ-confidence level file (when specify <code>-s</code>)<ul>
+<li>This file has a .stepwise suffix. It has the same format as the PIP file. Each row shows the ρ-confidence level when including the current variant and all variants above this row. To generate this file you need to specify the <code>-s</code> option</li>
+</ul>
+</li>
+<li>Other experimental output files<ul>
+<li>.exhaustive file outputs the best ρ-confidence level by exhaustive search of models for each model size. Due to the time cost, we only do that until model size 4. This needs the <code>-e</code> option to generate it.</li>
+<li>.exhaustivestepwise file outputs the ρ-confidence level by first applying the exhaustive search up to model size 4 and then switching to a stepwise search. This needs the <code>-x</code> option</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../caviarbf_R/" class="btn btn-neutral float-right" title="CAVIARBF R version">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../software_running/" class="btn btn-neutral" title="Software Running"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2018 Hongcheng Yao</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../software_running/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../caviarbf_R/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>

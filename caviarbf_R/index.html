@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Caviarbf Manual - Fine-mapping Documentation</title>
+  <title>CAVIARBF R version - Fine-mapping Documentation</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Caviarbf Manual";
-    var mkdocs_page_input_path = "caviarbf_manual.md";
-    var mkdocs_page_url = "/caviarbf_manual/";
+    var mkdocs_page_name = "CAVIARBF R version";
+    var mkdocs_page_input_path = "caviarbf_R.md";
+    var mkdocs_page_url = "/caviarbf_R/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -80,16 +80,23 @@
     <a class="" href="../software_running/">Software Running</a>
 	    </li>
           
+            <li class="toctree-l1">
+		
+    <a class="" href="../caviarbf_c++/">CAVIARBF C++ version</a>
+	    </li>
+          
             <li class="toctree-l1 current">
 		
-    <a class="current" href="./">Caviarbf Manual</a>
+    <a class="current" href="./">CAVIARBF R version</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#caviarbf">caviarbf</a></li>
+    <li class="toctree-l2"><a href="#caviarbf-r-version">CAVIARBF R version</a></li>
     
         <ul>
         
-            <li><a class="toctree-l3" href="#r-version">R version</a></li>
+            <li><a class="toctree-l3" href="#dependencies">Dependencies</a></li>
+        
+            <li><a class="toctree-l3" href="#software-detail">Software Detail</a></li>
         
         </ul>
     
@@ -124,7 +131,7 @@
     
       
     
-    <li>Caviarbf Manual</li>
+    <li>CAVIARBF R version</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -134,20 +141,20 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="caviarbf">caviarbf</h1>
-<h2 id="r-version">R version</h2>
+                <h1 id="caviarbf-r-version">CAVIARBF R version<a class="headerlink" href="#caviarbf-r-version" title="Permanent link">&para;</a></h1>
 <p>Since the documentation of caviarbf is not clear enough and sometimes mixes with the documentation of the C++ version and the R version this documentation serves as a supplement</p>
-<h3 id="dependencies">Dependencies</h3>
+<hr />
+<h2 id="dependencies">Dependencies<a class="headerlink" href="#dependencies" title="Permanent link">&para;</a></h2>
 <p>The R version depends on <code>Rcpp</code>, <code>RcppEigen</code> and <code>glmnet</code>, remember to install these package before installing caviarbf </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>By 2018-06-28, there is an error when using the lastest version of <code>glmnet</code> (2.0-16). According to the <a href="https://bitbucket.org/Wenan/caviarbf/issues/2/error-running-test_packager">author's own explanation</a>, "This is a problem with the latest glmnet update. So far glmnet 2.0-10 seems to be working. I will try to see whether I can make it work with the latest glmnet (2.0-13)</p>
+<p>By 2018-06-28, there is an error when using the lastest version of <code>glmnet</code> (2.0-16). According to the <a href="https://bitbucket.org/Wenan/caviarbf/issues/2/error-running-test_packager">author's own explanation</a>, "This is a problem with the latest glmnet update. So far glmnet 2.0-10 seems to be working. I will try to see whether I can make it work with the latest glmnet (2.0-13)"</p>
 <p>When testing with <code>glmnet</code> (2.0-10), there is no error</p>
 </div>
-<h3 id="software-detail">Software Detail</h3>
+<h2 id="software-detail">Software Detail<a class="headerlink" href="#software-detail" title="Permanent link">&para;</a></h2>
 <p>Following information are copied from caviarbf R package help directly</p>
 <p>Please type <code>?caviarbfFineMapping</code> in R for the usage of the interface.</p>
-<h4 id="usage">Usage</h4>
+<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
 <pre><code>caviarbfFineMapping(lociListFile, maxCausal, nSample, priorType01 = 0, 
 priorValue = c(0.1, 0.2, 0.4), exact = T, eps = 0, useIdentityMatrix = F, 
 BFFileListFile = NA, priorProb = 0, fittingMethod = "glmnetLASSOMin", 
@@ -158,7 +165,7 @@ annotationSuffix = ".annotations", LDSuffix = ".LD", outputPrefix, keepBF = F,
 overwriteExistingResults = F, maxIter = 50, deltaLik = 0.01, 
 useParallel = F, ncores = 1, verbose = F)
 </code></pre>
-<h4 id="argument">Argument</h4>
+<h3 id="argument">Argument<a class="headerlink" href="#argument" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p><code>lociListFile</code> A file listing all the z score files.</p>
@@ -258,7 +265,7 @@ useParallel = F, ncores = 1, verbose = F)
 <p><code>verbose</code> If true, more information are printed</p>
 </li>
 </ul>
-<h4 id="value">value</h4>
+<h3 id="value">value<a class="headerlink" href="#value" title="Permanent link">&para;</a></h3>
 <p>The results are saved in several files.  </p>
 <p><code>&lt;outputPrefix&gt;.marginal</code> saves the indices of all variants following the order in the list file and the their PIPs sorted in a descring order.</p>
 <p><code>&lt;outputPrefix&gt;.marginalz</code> includes the extra region index, the variant ID and the z score.</p>
@@ -266,7 +273,7 @@ useParallel = F, ncores = 1, verbose = F)
 <p><code>&lt;outputPrefix&gt;.gamma</code> stores the estimated annotation effect size and the effect size of standardized annotation.</p>
 <p><code>&lt;outputPrefix&gt;.log</code> stores the running log.</p>
 <p><code>&lt;outputPrefix&gt;.time</code> saves the running time.</p>
-<h4 id="note">Note</h4>
+<h3 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h3>
 <p><code>"topK"</code> First, annotations are ranked by their individual increase in likelihood compared to the model without any annotations. Then the top k annotations are used</p>
               
             </div>
@@ -278,7 +285,7 @@ useParallel = F, ncores = 1, verbose = F)
         <a href="../reference/" class="btn btn-neutral float-right" title="Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../software_running/" class="btn btn-neutral" title="Software Running"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../caviarbf_c++/" class="btn btn-neutral" title="CAVIARBF C++ version"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -306,7 +313,7 @@ useParallel = F, ncores = 1, verbose = F)
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../software_running/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../caviarbf_c++/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../reference/" style="color: #fcfcfc">Next &raquo;</a></span>
