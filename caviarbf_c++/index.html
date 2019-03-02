@@ -110,6 +110,11 @@
           
             <li class="toctree-l1">
 		
+    <a class="" href="../FINEMAP/">FINEMAP</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
     <a class="" href="../reference/">Reference</a>
 	    </li>
           
@@ -154,12 +159,24 @@
 <li>Run executable program <code>caviarbf</code>, and generate the Bayes factor file</li>
 <li>Use the Bayes factor file from former step and other files (if necessary), run executable program <code>model_search</code>, generate the final output files</li>
 </ol>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<h4 id="running-caviarbf">Running <code>caviarbf</code><a class="headerlink" href="#running-caviarbf" title="Permanent link">&para;</a></h4>
+<pre><code>./caviarbf -z ./example/myfile.Z -r ./example/myfile.LD -t 0 -a 0.1281429 -n 2000 -c 5 -o ./example/myfile.sigma0.1281429.bf
+</code></pre>
+<p>In this example, we specify <code>-z</code>, <code>-r</code> (use <code>-r</code> since <code>-c</code> is set to 5), <code>-t</code> (use 0 which is fully tested), <code>-a</code> (set to 0.1281429 which is close to the recommended value 0.1), <code>-n</code>, <code>-c</code>, <code>-o</code></p>
+<h4 id="running-model_search">Running <code>model_search</code><a class="headerlink" href="#running-model_search" title="Permanent link">&para;</a></h4>
+<pre><code>./model_search -i ./example/pref4.multi.txt -m 50 -p 0 –o ./example/pref4.multi.txt.prior0
+</code></pre>
 <h2 id="for-caviarbf">For <code>caviarbf</code><a class="headerlink" href="#for-caviarbf" title="Permanent link">&para;</a></h2>
 <h3 id="argument">Argument<a class="headerlink" href="#argument" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Be careful about setting <code>-e</code> when using a reference panel to generate LD matrix</p>
+</div>
 <ul>
 <li><code>-z</code> (<strong>required</strong>) input file for marginal test statistics</li>
-<li><code>-i</code> (<em>optional</em>) use the identity matrix for the correlation matrix, useful for c = 1</li>
-<li><code>-r</code> input file for correlation matrix<ul>
+<li><code>-i</code> (either -i or -r is <strong>required</strong>) use the identity matrix for the correlation matrix, useful for c = 1, i.e., assume only 1 causal variant</li>
+<li><code>-r</code> (either -i or -r is <strong>required</strong>) input file for correlation matrix<ul>
 <li>If <code>-i</code> is used, i.e., use identity matrix for the correlation matrix, then there is no need to use <code>-r</code> to specify the input file for correlation matrix</li>
 <li>If <code>-i</code> is not used, <code>-r</code> is <strong>required</strong></li>
 </ul>
@@ -209,7 +226,7 @@
 <p class="admonition-title">Note</p>
 <p>The coding scheme in the calculation of the correlation (LD) matrix should be consistent with that of the z scores, i.e., the allele coded as 1 in the calculation of z scores needs to be coded as 1 in the calculation of the correlation (LD) matrix and vice versa. Because this is how everything is calculated when we have the full genotype data: everything calculated is based on the same coding scheme. Otherwise the results using summary statistics may be arbitrary.</p>
 </div>
-<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
 <h5 id="marginal-test-statistics-file">Marginal test statistics file<a class="headerlink" href="#marginal-test-statistics-file" title="Permanent link">&para;</a></h5>
 <p>Note: This file should NOT contain header</p>
 <p>A text file with 2 or 3 columns separated by spaces. The third column is optional, which specifies the variance of each variant. In this case, we assume the effect size is not related to the allele frequency of the variant. The result will be similar to BIMBAM. Without the third column of variance of each variant, we assume that the effect size is larger when the minor allele frequency is smaller.</p>
@@ -229,7 +246,7 @@ rs1825507 -0.514003
 </code></pre>
 <h3 id="output-file-format">Output file format<a class="headerlink" href="#output-file-format" title="Permanent link">&para;</a></h3>
 <p>The output file is a text file with Bayes factors. It has the same format as that from BIMBAM. </p>
-<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h4>
 <h5 id="bayes-factor-file">Bayes factor file<a class="headerlink" href="#bayes-factor-file" title="Permanent link">&para;</a></h5>
 <p>The first line is a comment. The second line is the header. The first column is the Bayes factor. The rest columns indicate which SNPs/variants are in the model. NA means not in the model.</p>
 <pre><code>## note:bf=log10(Bayes Factor), SNP IDs are from 1 ... m
@@ -284,7 +301,7 @@ bf      se  snp1    snp2    snp3    snp4    snp5
 </ul>
 </li>
 </ul>
-<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h4>
+<h4 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h4>
 <h5 id="prior-probability-file">Prior probability file<a class="headerlink" href="#prior-probability-file" title="Permanent link">&para;</a></h5>
 <pre><code>0.02
 0.03

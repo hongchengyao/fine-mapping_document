@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>FINEMAP - Fine-mapping Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "FINEMAP";
+    var mkdocs_page_input_path = "FINEMAP.md";
+    var mkdocs_page_url = "/FINEMAP/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Fine-mapping Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Data Preprocessing</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../preprocessing/file_format/">1. File formatting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/file_split/">2. File splitting</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/ld_matrix_generation/">3. LD matrix generation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../preprocessing/functional_annotation_generation/">4. Functional annotation generation</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../software_running/">Software Running</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caviarbf_c++/">CAVIARBF C++ version</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../caviarbf_R/">CAVIARBF R version</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">FINEMAP</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#finemap">FINEMAP</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#running-process">Running Process</a></li>
+        
+            <li><a class="toctree-l3" href="#argument">Argument</a></li>
+        
+            <li><a class="toctree-l3" href="#input-file-format">Input file format</a></li>
+        
+            <li><a class="toctree-l3" href="#output-file-format">Output file format</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reference/">Reference</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Fine-mapping Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>FINEMAP</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="finemap">FINEMAP<a class="headerlink" href="#finemap" title="Permanent link">&para;</a></h1>
+<p>FINEMAP only works for <strong>SINGLE</strong> locus finemapping <strong>WITHOUT</strong> functional annotations.</p>
+<h2 id="running-process">Running Process<a class="headerlink" href="#running-process" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Prepare Z file, LD file and other optional input files as described in <a href="http://127.0.0.1:8000/FINEMAP/#input-file-format">Input file format</a></li>
+<li>Define datasets in the <code>master</code> file, each dataset correspond to one locus</li>
+<li>Run FINEMAP program, get the results</li>
+</ol>
+<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
+<ol>
+<li>There are 3 subprogram which you need to choose from, <code>--cond</code> (stepwise conditional search), <code>--config</code> (Evaluate a single causal configuration without performing shotgun stochastic search), <code>--sss</code> (Fine-mapping with shotgun stochastic search), <code>--sss</code> is the most commonly used mode when performing finemapping</li>
+<li><code>--corr-config</code> This is the option to set the posterior probability of a causal configuration to zero if it includes a pair of SNPs with absolute correlation above this threshold. This option is <strong>required</strong> with a default of 0.95. It is necessary because of the algorithm implementation. If a pair of SNPs is perfectly or near perfectly correlated, an important matrix (Rcc) will become not invertible. </li>
+</ol>
+<h2 id="argument">Argument<a class="headerlink" href="#argument" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>--cond</code> Fine-mapping with stepwise conditional search<ul>
+<li>Subprogram</li>
+</ul>
+</li>
+<li><code>--config</code> Evaluate a single causal configuration without performing shotgun stochastic search<ul>
+<li>Subprogram</li>
+</ul>
+</li>
+<li><code>--corr-config</code> Option to set the posterior probability of a causal configuration to zero if it includes a pair of SNPs with absolute correlation above this threshold<ul>
+<li>Default: 0.95</li>
+</ul>
+</li>
+<li><code>--corr-group</code> Option to set the threshold for grouping a pair of SNPs with absolute correlation above this threshold<ul>
+<li>Default: 0.99</li>
+</ul>
+</li>
+<li><code>--dataset</code> Option to specify a delimiter-separated list of datasets for fine-mapping as given in the master file (e.g. 1,2 or 1|2)<ul>
+<li>Default: All datasets will be processed</li>
+</ul>
+</li>
+<li><code>--flip-beta</code> Option to read a column 'flip' in the Z file with binary indicators specifying if the direction of the estimated SNP effect sizes needs to be flipped<ul>
+<li>With --cond, --config and --sss</li>
+</ul>
+</li>
+<li><code>--group-snps</code> Option to group SNPs on the basis of their correlations<ul>
+<li>With --cond and --sss</li>
+</ul>
+</li>
+<li><code>--in-files</code> Option to specify a semicolon separated master file with the following column names: 'z', 'ld', 'snp', 'config', 'n_samples' and optionally 'k' and 'log'. Each line is a dataset with file extensions corresponding with column names. The column 'n_samples' represents the GWAS sample size<ul>
+<li>With --cond, --config and --sss</li>
+</ul>
+</li>
+<li><code>--log</code> Option to write output to log files specified in column 'log' in the master file<ul>
+<li>No log files are written by default</li>
+</ul>
+</li>
+<li><code>--n-causal-snps</code> Option to set the maximum number of allowed causal SNPs<ul>
+<li>Default: 5</li>
+</ul>
+</li>
+<li><code>--n-configs-top</code> Option to set the number of top causal configurations to be saved<ul>
+<li>Default: 50000</li>
+</ul>
+</li>
+<li><code>--n-convergence</code> Option to set the number of iterations that the added probability mass is required to be below the specified threshold (--prob-tol) before shotgun stochastic search is terminated<ul>
+<li>Default: 1000</li>
+</ul>
+</li>
+<li><code>--n-iterations</code> Option to set the maximum number of iterations before shotgun stochastic search is terminated<ul>
+<li>Default: 100000</li>
+</ul>
+</li>
+<li><code>--prior-k</code> Option to use prior probabilities for the number of causal SNPs from K files as specified in column 'k' in the master file<ul>
+<li>SNPs are by default assumed to be causal with probability 1/(# of SNPs in the region)</li>
+</ul>
+</li>
+<li><code>--prior-k0</code> Option to set the prior probability that there is no causal SNP in the genomic region. Only used when computing posterior probabilities for the number of causal SNPs but not during fine-mapping itself<ul>
+<li>Default: 0.0</li>
+</ul>
+</li>
+<li><code>--prior-std</code> Option to specify a comma-separated list of prior standard deviations of effect sizes<ul>
+<li>Default: 0.05</li>
+</ul>
+</li>
+<li><code>--prob-tol</code> Option to set the tolerance at which the added probability mass (over --n-convergence iterations) is considered small enough to terminate shotgun stochastic search<ul>
+<li>Default: 0.001</li>
+</ul>
+</li>
+<li><code>--rsids</code> Option to specify a comma-separated list of SNP identifiers corresponding with the 'rsid' column in Z files as specified in column 'z' in the master file<ul>
+<li>Required with <code>--config</code></li>
+</ul>
+</li>
+<li><code>--sss</code> Fine-mapping with shotgun stochastic search<ul>
+<li>Subprogram</li>
+</ul>
+</li>
+</ul>
+<h2 id="input-file-format">Input file format<a class="headerlink" href="#input-file-format" title="Permanent link">&para;</a></h2>
+<h3 id="input-requirement">Input requirement<a class="headerlink" href="#input-requirement" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Master file (<strong>required</strong>)<ul>
+<li>Used to specify all information needed</li>
+</ul>
+</li>
+<li>Z file (<strong>required</strong>)<ul>
+<li>The <code>dataset.z</code> file is a space-delimited text file and contains the GWAS summary statistics one SNP per line</li>
+</ul>
+</li>
+<li>LD file (<strong>required</strong>)<ul>
+<li>The <code>dataset.ld</code> file is a space-delimited text file and contains the SNP correlation matrix (Pearson's correlation)</li>
+</ul>
+</li>
+<li>K file (<em>optional</em>)<ul>
+<li>specify prior probabilities for the number of causal SNPs in the genomic region by using a <code>dataset.k</code> file</li>
+</ul>
+</li>
+<li>BGEN, BGI, SAMPLE and INCL file (<em>optional</em>)<ul>
+<li>These are Oxford file formats, details see link  <a href="https://www.well.ox.ac.uk/~gav/bgen_format/">BGEN</a>, <a href="https://bitbucket.org/gavinband/bgen/wiki/The_bgenix_index_file_format">BGI</a>. The <code>dataset.incl</code> file is a text file to restrict estimation of SNP correlations to genotype data from a subset of samples in <code>dataset.sample</code>. It contains one sample ID per line</li>
+</ul>
+</li>
+</ul>
+<h4 id="master-file">Master file<a class="headerlink" href="#master-file" title="Permanent link">&para;</a></h4>
+<p>The <code>master</code> file is a semicolon-separated text file and contains no space. It contains the following mandatory column names and one dataset per line.</p>
+<h5 id="input">Input<a class="headerlink" href="#input" title="Permanent link">&para;</a></h5>
+<ul>
+<li><code>z</code> column contains the names of Z files (<strong>required</strong>)</li>
+<li><code>ld</code> column contains the names of LD files (<strong>required</strong>)</li>
+<li><code>n_samples</code> column contains the GWAS sample sizes (<strong>required</strong>)</li>
+<li><code>k</code> column contains the optional K files (<em>optional</em>)</li>
+<li><code>bgen</code> column contains the names of BGEN files (<em>optional</em>)</li>
+<li><code>bgi</code> column contains the names of BGI files (<em>optional</em>)</li>
+<li><code>sample</code> column contains the names of SAMPLE files (<em>optional</em>)</li>
+<li><code>incl</code> column contains the names of INCL files (<em>optional</em>)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>File extensions must correspond with the column names in the header line!</p>
+</div>
+<h5 id="output">Output<a class="headerlink" href="#output" title="Permanent link">&para;</a></h5>
+<ul>
+<li><code>snp</code> column contains the names of SNP files (<strong>required</strong>)</li>
+<li><code>config</code> column contains the names of CONFIG files (<strong>required</strong>)</li>
+<li><code>cred</code> column contains the names of CRED files (<strong>required</strong>)</li>
+<li><code>dose</code> column contains the names of DOSE files (<em>optional</em>)</li>
+<li><code>log</code> column contains the optional LOG files (<em>optional</em>)</li>
+</ul>
+<h5 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h5>
+<ul>
+<li>A <code>master</code> file with two datasets using precomputed SNP correlations could look as follows.</li>
+</ul>
+<pre><code>z;ld;snp;config;cred;log;n_samples
+dataset1.z;dataset1.ld;dataset1.snp;dataset1.config;dataset1.cred;dataset1.log;5363
+dataset2.z;dataset2.ld;dataset2.snp;dataset2.config;dataset2.cred;dataset2.log;5363
+</code></pre>
+
+<ul>
+<li>A <code>master</code> file with two datasets using precomputed SNP correlations in the first dataset and BGEN support in the second dataset could look as follows.</li>
+</ul>
+<pre><code>z;ld;bgen;bgi;dose;snp;config;cred;log;n_samples
+dataset1.z;dataset1.ld;;;;dataset1.snp;dataset1.config;dataset1.cred;dataset1.log;5363
+dataset2.z;;dataset2.bgen;dataset2.bgi;dataset2.dose;dataset2.snp;dataset2.config;dataset2.cred;dataset2.log;5363
+</code></pre>
+
+<ul>
+<li>A <code>master</code> file with one datasets using BGEN support and a subset of 5,000 samples could look as follows.</li>
+</ul>
+<pre><code>z;bgen;bgi;dose;sample;incl;snp;config;cred;log;n_samples
+dataset2.z;dataset2.bgen;dataset2.bgi;dataset2.dose;dataset.sample;dataset.incl;dataset.snp;dataset.config;dataset.cred;dataset.log;5000
+</code></pre>
+
+<h4 id="z-file">Z file<a class="headerlink" href="#z-file" title="Permanent link">&para;</a></h4>
+<p>The <code>dataset.z file</code> is a space-delimited text file and contains the GWAS summary statistics one SNP per line. It contains the mandatory column names in the following order.</p>
+<ul>
+<li><code>rsid</code> (<em>can be specified arbitrarily</em>) column contains the SNP identifiers. The identifier can be a rsID number or a combination of chromosome name and genomic position (e.g. XXX:yyy)</li>
+<li><code>chromosome</code> (<em>can be specified arbitrarily</em>) column contains the chromosome names. The chromosome names can be chosen freely with precomputed SNP correlations (e.g. 'X', '0X' or 'chrX')</li>
+<li><code>position</code> (<em>can be specified arbitrarily</em>) column contains the base pair positions</li>
+<li><code>allele1</code> (<em>can be specified arbitrarily</em>) column contains the "first" allele of the SNPs. In SNPTEST this corresponds to 'allele_A', whereas BOLT-LMM uses 'ALLELE1'</li>
+<li><code>allele2</code> (<em>can be specified arbitrarily</em>) column contains the "second" allele of the SNPs. In SNPTEST this corresponds to 'allele_B', whereas BOLT-LMM uses 'ALLELE0'</li>
+<li><code>maf</code> (<strong>needed</strong> to output posterior effect size estimates on the allelic scale) column contains the minor allele frequencies</li>
+<li><code>beta</code> (<strong>required</strong>) column contains the estimated effect sizes as given by GWAS software</li>
+<li><code>se</code> (<strong>required</strong>) column contains the standard errors of effect sizes as given by GWAS software</li>
+<li><code>flip</code> optional column - see below </li>
+</ul>
+<h5 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h5>
+<ul>
+<li>A <code>dataset.z</code> file with three SNPs could look as follows.</li>
+</ul>
+<pre><code>rsid chromosome position allele1 allele2 maf beta se
+rs1 10 1 T C 0.35 0.0050 0.0208
+rs2 10 1 A G 0.04 0.0368 0.0761
+rs3 10 1 G A 0.18 0.0228 0.0199
+</code></pre>
+
+<h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
+<h2 id="output-file-format">Output file format<a class="headerlink" href="#output-file-format" title="Permanent link">&para;</a></h2>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../reference/" class="btn btn-neutral float-right" title="Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../caviarbf_R/" class="btn btn-neutral" title="CAVIARBF R version"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>Copyright © 2018 Hongcheng Yao</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../caviarbf_R/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
