@@ -9,6 +9,7 @@ pages:
   - Software Running: 'software_running.md'
   - CAVIARBF C++ version: 'caviarbf_c++.md'
   - CAVIARBF R version: 'caviarbf_R.md'
+  - FINEMAP: 'FINEMAP.md'
   - Reference: 'reference.md'
 theme: readthedocs
 repo_name: https://github.com/hongchengyao/fine-mapping_document/tree/master

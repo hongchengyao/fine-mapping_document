@@ -8,12 +8,24 @@ The C++ version only works for **SINGLE** locus finemapping **WITHOUT** function
 2. Run executable program `caviarbf`, and generate the Bayes factor file
 3. Use the Bayes factor file from former step and other files (if necessary), run executable program `model_search`, generate the final output files
 
+### Example
+#### Running `caviarbf`
+    ./caviarbf -z ./example/myfile.Z -r ./example/myfile.LD -t 0 -a 0.1281429 -n 2000 -c 5 -o ./example/myfile.sigma0.1281429.bf
+    
+In this example, we specify `-z`, `-r` (use `-r` since `-c` is set to 5), `-t` (use 0 which is fully tested), `-a` (set to 0.1281429 which is close to the recommended value 0.1), `-n`, `-c`, `-o`
+#### Running `model_search`
+    ./model_search -i ./example/pref4.multi.txt -m 50 -p 0 –o ./example/pref4.multi.txt.prior0 
 ## For `caviarbf`
 
 ### Argument
+
+!!! Note
+
+    Be careful about setting `-e` when using a reference panel to generate LD matrix
+    
 - `-z` (**required**) input file for marginal test statistics
-- `-i` (*optional*) use the identity matrix for the correlation matrix, useful for c = 1
-- `-r` input file for correlation matrix
+- `-i` (either -i or -r is **required**) use the identity matrix for the correlation matrix, useful for c = 1, i.e., assume only 1 causal variant
+- `-r` (either -i or -r is **required**) input file for correlation matrix
     - If `-i` is used, i.e., use identity matrix for the correlation matrix, then there is no need to use `-r` to specify the input file for correlation matrix
     - If `-i` is not used, `-r` is **required**
 - `-t` (**required**) prior type for variant effect size
